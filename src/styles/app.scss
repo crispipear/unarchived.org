@@ -1,0 +1,26 @@
+@import './mixin';
+
+body{
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
+}
+
+h1,h2,h3,h4,h5{
+  color: $header;
+}
+
+p, span{
+  color: $text;
+  font-size: 1rem;
+}
+
+
+.container{
+  position: absolute;
+  padding: 25px 50px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  // background-color: red;
+}
