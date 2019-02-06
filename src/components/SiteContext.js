@@ -12,6 +12,7 @@ export class SiteProvider extends Component {
   componentDidMount(){
     this._fetchSiteData();
     this._fetchAssets();
+    console.log(process.env.PUBLIC_URL)
   }
 
   state = {

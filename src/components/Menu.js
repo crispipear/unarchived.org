@@ -11,7 +11,6 @@ class Menu extends Component {
                 {this.props.siteAssets && <img src={`https:${this.props.siteAssets.logo}`}/>}
             </div>
             <div className="links">
-            {console.log(this.props.match)}
                 <Link to="/">Home</Link>
                 <Link to="/map">Map</Link>
                 <Link to="/blog">Blog</Link>

@@ -35,7 +35,7 @@ function Navigation() {
           {routes.map((route, index) => (
             <Route
               key={index}
-              path={route.path}
+              path={process.env.PUBLIC_URL + route.path}
               exact={route.exact}
               component={route.main}
             />
