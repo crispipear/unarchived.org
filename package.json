@@ -2,6 +2,7 @@
   "name": "pgs_website",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://crispipear.github.io/pgs_website/",
   "dependencies": {
     "contentful": "^7.2.0",
     "gh-pages": "^2.0.1",
