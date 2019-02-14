@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import {SiteConsumer} from './SiteContext';
+import BlogItem from './blog/BlogItem';
+import '../styles/blog.scss';
 
 class Blog extends Component {
   render() {
     return (
       <div className='blog container'>
-        <h1>
-          Blog
-        </h1>
+        {
+          this.props.blogs && this.props.blogs.map((b, key) => 
+            <BlogItem key={key} blog={b}/>
+          )
+        }
       </div>  
     );
   }
@@ -15,8 +19,8 @@ class Blog extends Component {
 
 export default () => (
   <SiteConsumer>
-    {({siteContent}) => (
-      <Blog siteContent={siteContent}/>
+    {({blogs}) => (
+      <Blog blogs={blogs}/>
     )}
   </SiteConsumer>
 )

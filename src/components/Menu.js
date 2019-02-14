@@ -3,18 +3,47 @@ import {SiteConsumer} from './SiteContext';
 import {Link} from "react-router-dom";
 import '../styles/menu.scss';
 
+const routes = [
+  {
+    path: "/",
+    name: "Home"
+  },
+  {
+    path: "/about",
+    name: "About"
+  },
+  {
+    path: "/map",
+    name: "Map"
+  },
+  {
+    path: "/blog",
+    name: "Blog"
+  },
+];
+
 class Menu extends Component {
-    render(){
+  componentDidMount(){
+    console.log(process.env.PUBLIC_URL)
+  }
+  render(){
         return(
           <div className="menu">
             <div className="logo">
-                {this.props.siteAssets && <img src={`https:${this.props.siteAssets.logo}`}/>}
+                {this.props.siteAssets && <img src={this.props.siteAssets.logo}/>}
             </div>
             <div className="links">
-                <Link to="/">Home</Link>
-                <Link to="/map">Map</Link>
-                <Link to="/blog">Blog</Link>
-                <Link to="/about">About</Link>
+                {
+                  routes.map((r, key) => 
+                    <Link 
+                      key={key} 
+                      to={process.env.PUBLIC_URL + r.path}
+                      className={window.location.pathname == r.path ? "active" : ""}
+                    >
+                      {r.name}
+                    </Link>
+                  )
+                }
             </div>
           </div>
         )
@@ -23,8 +52,8 @@ class Menu extends Component {
 
 export default () => (
     <SiteConsumer>
-      {({siteAssets, match}) => (
-        <Menu match={match} siteAssets={siteAssets}/>
+      {({siteAssets}) => (
+        <Menu siteAssets={siteAssets}/>
       )}
     </SiteConsumer>
   )

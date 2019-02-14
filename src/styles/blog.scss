@@ -1,0 +1,52 @@
+@import './mixin';
+
+.blog{
+    flex-direction: column;
+    .blog_item{
+        cursor: pointer;
+        width: 750px;
+        height: 275px;
+        box-sizing: border-box;
+        margin: 2.5% 0%;
+        display: flex;
+        flex-direction: row;
+        box-shadow: 0px 5px 30px 0px rgba($header, 0.1);
+        transition: all 0.25s;
+        &:hover{
+            box-shadow: 0px 5px 25px 0px rgba($header, 0.2);
+        }
+    }
+    .blog_item_img{
+        flex: 1;
+        background-position: center;
+        background-size: cover;
+    }
+    .blog_item_content{
+        flex: 2.25;
+        padding: 2.5% 5%; 
+        position: relative;       
+        h1{
+            color: $header;
+            font-size: 1.35rem;
+            font-weight: 400;
+        }
+        h3{
+            color: $text;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+        p{
+            margin-top: 6.5%;
+            color: $text;
+            font-size: 0.8rem;
+            line-height: 1.15rem;
+        }
+        span{
+            color: rgba($text, 0.5);
+            font-size: 0.75rem;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;   
+        }
+    }
+}

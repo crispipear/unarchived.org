@@ -31,7 +31,7 @@ function Navigation() {
     <Router>
       <div className="app">
         <Menu/>
-        <div style={{ marginLeft: '125px'}}>
+        <div style={{ marginLeft: '9vw'}}>
           {routes.map((route, index) => (
             <Route
               key={index}

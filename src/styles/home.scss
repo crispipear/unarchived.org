@@ -1,0 +1,23 @@
+@import './mixin';
+
+.home{
+    background-position: center;
+    background-size: cover;
+    h1, p{
+        color: white;
+        width: 50%;
+    }
+    h1{
+        font-size: 5rem;
+        margin: 0;
+        font-weight: 400;
+    }
+    p{
+        font-size: 1.1rem;
+        line-height: 1.75rem;
+        letter-spacing: 0.05rem;
+    }
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0% 0% 8% 7.5%;
+}
