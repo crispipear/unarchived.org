@@ -38,7 +38,7 @@ class Menu extends Component {
                     <Link 
                       key={key} 
                       to={process.env.PUBLIC_URL + r.path}
-                      className={window.location.pathname == r.path ? "active" : ""}
+                      className={window.location.pathname == process.env.PUBLIC_URL+r.path ? "active" : ""}
                     >
                       {r.name}
                     </Link>
