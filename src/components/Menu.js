@@ -30,7 +30,7 @@ class Menu extends Component {
         return(
           <div className="menu">
             <div className="logo">
-                {this.props.siteAssets && <img src={this.props.siteAssets.logo}/>}
+                {<img src={this.props.siteAssets.logo}/>}
             </div>
             <div className="links">
                 {

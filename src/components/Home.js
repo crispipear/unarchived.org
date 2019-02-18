@@ -7,7 +7,7 @@ class Home extends Component {
     return (
       this.props.siteContent ?
           <div className='home container'
-               style={this.props.siteAssets && {backgroundImage: `url(${this.props.siteAssets.lp_bg})`}}
+               style={{backgroundImage: `url(${this.props.siteAssets.lp_bg})`}}
           >
             <h1>{this.props.siteContent.project_name}</h1>
             <p>{this.props.siteContent.project_short_des}</p>

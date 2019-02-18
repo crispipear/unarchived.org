@@ -10,7 +10,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    border-right: $key3 solid 1px;
+    border-right: rgba($key3, 0.35) solid 1px;
     a{
         text-decoration: none;
         text-transform: uppercase;
@@ -21,7 +21,7 @@
         letter-spacing: 0.05rem;
         transition: all 0.2s;
         &:hover{
-            opacity: 0.5;
+            color: $key2;
         }
     }
     .links{
@@ -29,8 +29,8 @@
         display: flex;
         flex-direction: column;
         .active{
-            color: $key1;
-            font-weight: bold;
+            color: $key2;
+            font-weight: 400;
         }
     }
     .logo{

@@ -1,0 +1,101 @@
+@import './mixin';
+
+.about{
+    padding: 0%;
+    flex-direction: column;
+    h1{
+        font-size: 1.75rem;
+        margin: 0% 0% 2.5% 0%;
+        font-weight: 300;
+    }
+    p{
+        font-size: 0.85rem;
+        line-height: 1.5rem;
+    }
+    .about-project, .about-inspiration{
+        display: flex;
+        flex-direction: row;
+        min-height: 100vh;
+        .info, .image{
+            width: 50%;
+        }
+        .info{
+            box-sizing: border-box;
+            padding: 5%;
+            h1{
+                margin-bottom: 7.5%;
+            }
+        }
+        .image{
+            background-position: center;
+            background-size: cover;
+        }
+    }
+    .about-inspiration{
+        background-color: rgba($key3, 0.1);
+    }
+    .about-team{
+        h1{
+            font-size: 2.5rem;
+        }
+        margin-top: 7.5%;
+        padding: 5%;
+        .member-container{
+            margin-top: 7.5%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+            justify-content: space-between;
+            .member{
+                display: flex;
+                flex-direction: row;
+                width: 37.5vw;
+                min-height: 25vw;
+                &:nth-child(even){
+                    margin-top: 15%;
+                }
+                .left, .right{
+                    flex: 1;
+                }
+                .left{
+                    margin-right: 5%;
+                }
+                .member-photo{
+                    max-width: 100%;
+                }
+                .member-links{
+                    margin-top: 5%;
+                    a{
+                        font-size: 0.8rem;
+                        letter-spacing: 0.05rem;
+                        padding: 0.5% 0%;
+                        margin-right: 3.5%;
+                        transition: all 0.2s;
+                        background-color: rgba($key2, 0.25);
+                        &:hover{
+                            background-color: rgba($key2, 0.9);
+                            color: white;
+                        }
+                    }
+                }
+                .right{
+                    h1{
+                        font-size: 1.5rem;
+                    }
+                    .role{
+                        color: $key3;
+                        font-size: 0.9rem;
+                        font-weight: 400;
+                        letter-spacing: 0.025rem;
+                        line-height: 1.25rem;
+                    }
+                    .desc{
+                        font-size: 0.8rem;
+                        line-height: 1.35rem;
+                    }
+                }
+            }
+        }
+    }
+}

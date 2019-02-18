@@ -3,9 +3,10 @@ import {fetchData, fetchAssets} from '../utils/fetchData';
 import fire from '../utils/firebase';
 
 const SiteContext = React.createContext({
-    siteContent: undefined,
-    siteAssets: undefined,
-    blogs: undefined
+    siteContent: {},
+    siteAssets: {},
+    blogs: [],
+    members: []
 })
 
 export const SiteConsumer = SiteContext.Consumer
@@ -19,9 +20,10 @@ export class SiteProvider extends Component {
   }
 
   state = {
-    siteContent: undefined,
-    siteAssets: undefined,
-    blogs: undefined
+    siteContent: {},
+    siteAssets: {},
+    blogs: [],
+    members: []
   }
 
   _getMarkers = async colName => {
@@ -37,12 +39,33 @@ export class SiteProvider extends Component {
     const data = await fetchData('siteContent');
     this._processSiteContent(data);
     const blog = await fetchData('blog');
-    this._processBlogData(blog)
+    this._processBlogData(blog);
+    const members = await fetchData('teamMember');
+    this._processTeamMembers(members);
   }
 
   _fetchAssets = async () => {
     const data = await fetchAssets();
     this._processAssets(data);
+  }
+
+  _processTeamMembers = data => {
+    let members = []
+    data.map(i => {
+      let member = Object.assign({}, i)
+      member.picture = `https:${i.picture.fields.file.url}`
+      members.push(member)
+    })
+    members.sort(compare)
+    this.setState({
+      members
+    })
+    function compare(a, b){
+      if(a.name < b.name) return -1
+      if(a.name > b.name) return 1
+  
+      return 0
+    }
   }
 
   _processAssets = data => {
@@ -85,7 +108,8 @@ export class SiteProvider extends Component {
         value={{
             siteContent: this.state.siteContent,
             siteAssets: this.state.siteAssets,
-            blogs: this.state.blogs
+            blogs: this.state.blogs,
+            members: this.state.members
         }}
       >
         {this.props.children}

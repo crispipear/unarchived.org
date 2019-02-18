@@ -8,7 +8,7 @@ class Blog extends Component {
     return (
       <div className='blog container'>
         {
-          this.props.blogs && this.props.blogs.map((b, key) => 
+          this.props.blogs.map((b, key) => 
             <BlogItem key={key} blog={b}/>
           )
         }
