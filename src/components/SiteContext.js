@@ -95,7 +95,7 @@ export class SiteProvider extends Component {
   _processSiteContent = data => {
     let siteContent = {}
     data.map(obj => {
-      siteContent[obj.name] = obj.content
+      siteContent[obj.contentId] = obj.content
     })
     this.setState({
       siteContent
