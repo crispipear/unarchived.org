@@ -6,11 +6,10 @@ class Home extends Component {
   render() {
     return (
       this.props.siteContent ?
-          <div className='home container'
-               style={{backgroundImage: `url(${this.props.siteAssets.lp_bg})`}}
-          >
+          <div className='home container'>
             <h1>{this.props.siteContent.project_name}</h1>
-            <p>{this.props.siteContent.project_short_des}</p>
+            <p>{this.props.siteContent.project_tagline}</p>
+            <video autoPlay muted loop className="home-vid" src={this.props.siteAssets.videoBg}/>
           </div>        
         :
         <div className='home'/>

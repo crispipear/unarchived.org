@@ -5,11 +5,11 @@ class Project extends Component {
   render() {
     return (
       <div className='about-project'>
+        <div className='image' style={{backgroundImage:  `url(${this.props.siteAssets.about_project}`}}/>
         <div className='info'>
-            <h1>{this.props.siteContent.about_proj_title}</h1>
+            <h2>{this.props.siteContent.about_proj_title}</h2>
             <p>{this.props.siteContent.about_proj_desc}</p>
         </div>
-        <div className='image' style={{backgroundImage:  `url(${this.props.siteAssets.about_project}`}}/>
       </div>  
     );
   }

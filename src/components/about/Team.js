@@ -5,15 +5,11 @@ class Team extends Component {
   render() {
     return (
       <div className='about-team'>
-        <h1>Meet the team</h1>
-        <p>{this.props.siteContent.about_team_desc}</p>
-        <div className='member-container'>
-            {
-                this.props.members.map((m, key) =>
-                    <TeamMember key={key} info={m}/>
-                )
-            }
-        </div>
+        {
+            this.props.members.map((m, key) =>
+                <TeamMember key={key} info={m}/>
+            )
+        }
       </div>  
     );
   }

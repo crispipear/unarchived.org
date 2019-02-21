@@ -45,6 +45,9 @@ class Menu extends Component {
                   )
                 }
             </div>
+            <div className="icon">
+                <a href='mailto: abrahamavnisan@gmail.com'>{<img src={this.props.siteAssets.contact}/>}</a>
+            </div>
           </div>
         )
     }
