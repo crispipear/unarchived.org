@@ -22,7 +22,7 @@
         padding: 2.5px;
         text-align: center;
         &:hover{
-            color: $key2;
+            font-weight: bold;
         }
     }
     .links{
@@ -31,8 +31,7 @@
         flex-direction: column;
         justify-content: center;
         .active{
-            background-color: rgba($key2, 0.75);
-            color: white;
+            font-weight: bold;
         }
     }
     .logo, .icon{

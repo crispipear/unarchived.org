@@ -53,7 +53,8 @@ export class SiteProvider extends Component {
     let members = []
     data.map(i => {
       let member = Object.assign({}, i)
-      member.picture = `https:${i.picture.fields.file.url}`
+      member.portrait = `https:${i.portrait[0].fields.file.url}`
+      member.portraitAlt = `https:${i.portrait[1].fields.file.url}`
       members.push(member)
     })
     members.sort(compare)

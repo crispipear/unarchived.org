@@ -16,11 +16,22 @@ class Team extends Component {
 }
 
 class TeamMember extends Component {
+    state = {
+      imgSrc: ""
+    }
+    componentDidMount(){
+      this.setState({
+        imgSrc: this.props.info.portrait
+      })
+    }
     render(){
         return(
             <div className='member'>
                 <div className='left'>
-                    <img className='member-photo' src={this.props.info.picture} />
+                    <img className='member-photo' src={this.state.imgSrc}
+                      onMouseOver={() => this.setState({imgSrc: this.props.info.portraitAlt})}
+                      onMouseOut={() => this.setState({imgSrc: this.props.info.portrait})}
+                    />
                 </div>
                 <div className='right'>
                     <h1>{this.props.info.name}</h1>
