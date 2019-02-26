@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 import Home from './Home';
 import About from './About';
 import Map from './Map';
@@ -9,7 +9,6 @@ import Menu from "./Menu";
 const routes = [
   {
     path: "/",
-    exact: true,
     main: Home
   },
   {
@@ -34,9 +33,9 @@ function Navigation() {
         <div style={{ marginLeft: '9vw'}}>
           {routes.map((route, index) => (
             <Route
+              exact
               key={index}
-              path={process.env.PUBLIC_URL + route.path}
-              exact={route.exact}
+              path={route.path}
               component={route.main}
             />
           ))}

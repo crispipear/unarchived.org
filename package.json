@@ -1,8 +1,8 @@
 {
-  "name": "pgs_website",
+  "name": "unarchived",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://crispipear.github.io/pgs_website/",
+  "homepage": "https://unarchived.org",
   "dependencies": {
     "contentful": "^7.2.0",
     "firebase": "^5.8.2",
@@ -10,9 +10,10 @@
     "node-sass": "^4.11.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-google-maps": "^9.4.5",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.3"
+    "react-scripts": "^2.1.5"
   },
   "scripts": {
     "start": "react-scripts start",

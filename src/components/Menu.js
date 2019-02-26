@@ -23,8 +23,8 @@ const routes = [
 ];
 
 class Menu extends Component {
-  componentDidMount(){
-    console.log(process.env.PUBLIC_URL)
+  componentWillReceiveProps(){
+    console.log(window.location.hash)
   }
   render(){
         return(
@@ -37,8 +37,8 @@ class Menu extends Component {
                   routes.map((r, key) => 
                     <Link 
                       key={key} 
-                      to={process.env.PUBLIC_URL + r.path}
-                      className={window.location.pathname == process.env.PUBLIC_URL+r.path ? "active" : ""}
+                      to={r.path}
+                      className={window.location.hash === '#'+r.path ? "active" : ""}
                     >
                       {r.name}
                     </Link>
@@ -46,7 +46,7 @@ class Menu extends Component {
                 }
             </div>
             <div className="icon">
-                <a href='mailto: abrahamavnisan@gmail.com'>{<img src={this.props.siteAssets.contact}/>}</a>
+                <a href='mailto: unarchived.org@gmail.com'>{<img src={this.props.siteAssets.contact}/>}</a>
             </div>
           </div>
         )
