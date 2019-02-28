@@ -23,9 +23,6 @@ const routes = [
 ];
 
 class Menu extends Component {
-  componentWillReceiveProps(){
-    console.log(window.location.hash)
-  }
   render(){
         return(
           <div className="menu">

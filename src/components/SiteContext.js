@@ -96,7 +96,11 @@ export class SiteProvider extends Component {
   _processSiteContent = data => {
     let siteContent = {}
     data.map(obj => {
-      siteContent[obj.contentId] = obj.content
+      if(obj.jsonData){
+        siteContent[obj.contentId] = obj.jsonData
+      }else if(obj.content){
+        siteContent[obj.contentId] = obj.content
+      }
     })
     this.setState({
       siteContent

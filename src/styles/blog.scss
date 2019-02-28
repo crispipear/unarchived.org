@@ -12,6 +12,7 @@
         flex-direction: row;
         box-shadow: 0px 5px 30px 0px rgba($header, 0.1);
         transition: all 0.25s;
+        border-radius: 7.5px;
         &:hover{
             box-shadow: 0px 5px 25px 0px rgba($header, 0.2);
         }

@@ -1,0 +1,47 @@
+a[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
+
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+    display:none;
+}
+.gmnoprint div {
+    background:none !important;
+}
+
+.map{
+    padding: 0%;
+    .info{
+        width: 50%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 5%;
+        box-sizing: border-box;
+    }
+    .neighborhood_card{
+        width: 500px;
+        height: 160px;
+        background-color: red;
+        margin-bottom: 45px;
+        background-position: center;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 7.5px;
+        transition: opacity 0.2s;
+        cursor: pointer;
+        h1{
+            font-weight: 300;
+            font-size: 1.25rem;
+            letter-spacing: 0.15rem;
+            color: rgba(white, 0.75);
+        }
+        &:hover{
+            opacity: 0.75;
+        }
+    }
+}
+
