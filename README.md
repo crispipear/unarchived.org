@@ -1,1 +1,1 @@
-#People's Geography of Seattle Project: Name Pending
+#People's Geography of Seattle Project: unARchived
