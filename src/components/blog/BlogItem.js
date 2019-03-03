@@ -12,7 +12,7 @@ const BlogItem = ({blog, openBlog}) => (
             </h3>
             <p>
                 {
-                    blog.content[0].replace(/(([^\s]+\s\s*){50})(.*)/,"$1…")
+                    blog.content[0].replace(/(([^\s]+\s\s*){30})(.*)/,"$1…")
                 }
             </p>
             <span>

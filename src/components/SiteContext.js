@@ -80,7 +80,8 @@ export class SiteProvider extends Component {
   _processBlogData = data => {
     let blogs = []
     data.map(b => {
-      let content = b.blogContent.content.map(c => c.content[0].value)
+      let content = []
+      b.blogContent.content.map(c => {content.push(c.content[0].value)})
       blogs.push({
         title: b.title,
         author: b.author,

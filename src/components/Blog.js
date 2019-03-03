@@ -13,17 +13,27 @@ class Blog extends Component {
   }
 
   openBlog = blog => {
-    let member = this.props.members.find(m => m.name == blog.author)
-    let author = {
-      name: member.name,
-      role: member.role,
-      picture: member.portrait
-    }
+    let author = this._getAuthors(blog.author)
     this.setState({
       blogView: true,
       blog,
       author
     })
+  }
+
+  _getAuthors = data => {
+    let authors = []
+    let blogAuthor = data.split(",")
+    blogAuthor.map(a => {
+      let member = this.props.members.find(m => m.name == a)
+      authors.push({
+        name: member.name,
+        link: member.website,
+        role: member.role,
+        picture: member.portrait
+      })
+    })
+    return authors
   }
 
   closeBlog = () => {
