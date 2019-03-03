@@ -1,8 +1,7 @@
 import React from 'react'
-import Blog from '../Blog';
 
-const BlogItem = ({blog}) => (
-    <div className="blog_item">
+const BlogItem = ({blog, openBlog}) => (
+    <div className="blog_item" onClick={() => openBlog(blog)}>
         <div className="blog_item_img" style={{backgroundImage: `url(${blog.img})`}}/>
         <div className="blog_item_content">
             <h1>
