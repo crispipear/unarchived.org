@@ -1,4 +1,5 @@
 import firebase from 'firebase/app';
+import 'firebase/storage';
 import 'firebase/firestore';
 
 const config = {
@@ -9,7 +10,7 @@ const config = {
     storageBucket: "people-s-geography-of-seattle.appspot.com",
     messagingSenderId: "960345994076"
 };
+// this.store = {}
+const fire = firebase.initializeApp(config);
 
-const store = firebase.initializeApp(config);
-
-export default store;
+export default fire;

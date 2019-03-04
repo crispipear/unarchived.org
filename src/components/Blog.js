@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {SiteConsumer} from './SiteContext';
+import {connect} from 'react-redux';
 import BlogItem from './blog/BlogItem';
 import BlogView from './blog/BlogView';
 import '../styles/blog.scss';
@@ -59,10 +59,9 @@ class Blog extends Component {
   }
 }
 
-export default () => (
-  <SiteConsumer>
-    {({blogs, members}) => (
-      <Blog blogs={blogs} members={members}/>
-    )}
-  </SiteConsumer>
-)
+const mapStateToProps = state => ({
+  blogs: state.site.blogs,
+  members: state.site.members
+})
+
+export default connect(mapStateToProps, null)(Blog)

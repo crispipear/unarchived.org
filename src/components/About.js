@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {SiteConsumer} from './SiteContext';
+import {connect} from 'react-redux';
 import Project from './about/Project';
 import Inspiration from './about/Inspiration';
 import Team from './about/Team';
@@ -28,10 +28,9 @@ class About extends Component {
   }
 }
 
-export default () => (
-  <SiteConsumer>
-    {({siteContent, siteAssets}) => (
-      <About siteContent={siteContent} siteAssets={siteAssets}/>
-    )}
-  </SiteConsumer>
-)
+const mapStateToProps = state => ({
+  siteContent: state.site.siteContent,
+  siteAssets: state.site.siteAssets
+})
+
+export default connect(mapStateToProps, null)(About)

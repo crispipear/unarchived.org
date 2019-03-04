@@ -1,7 +1,9 @@
 import React, {Component} from "react";
-import {SiteConsumer} from './SiteContext';
 import {Link} from "react-router-dom";
 import '../styles/menu.scss';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {updateSiteLocation} from '../actions/siteActions'
 
 const routes = [
   {
@@ -23,6 +25,9 @@ const routes = [
 ];
 
 class Menu extends Component {
+  updateLoc = path => {
+    this.props.updateSiteLocation(path)
+  }
   render(){
         return(
           <div className="menu">
@@ -33,9 +38,11 @@ class Menu extends Component {
                 {
                   routes.map((r, key) => 
                     <Link 
+                      replace
                       key={key} 
                       to={r.path}
-                      className={window.location.hash === '#'+r.path ? "active" : ""}
+                      onClick={() => this.updateLoc(r.path)}
+                      className={this.props.siteLoc === r.path ? "active" : ""}
                     >
                       {r.name}
                     </Link>
@@ -50,11 +57,16 @@ class Menu extends Component {
     }
 }
 
-export default () => (
-    <SiteConsumer>
-      {({siteAssets}) => (
-        <Menu siteAssets={siteAssets}/>
-      )}
-    </SiteConsumer>
-  )
+const mapStateToProps = state => ({
+  siteAssets: state.site.siteAssets,
+  siteLoc: state.site.siteLoc
+})
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({
+    updateSiteLocation
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu)
   

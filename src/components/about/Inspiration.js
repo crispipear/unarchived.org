@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {SiteConsumer} from '../SiteContext';
+import {connect} from 'react-redux';
 
 class Inspiration extends Component {
   render() {
@@ -15,10 +15,9 @@ class Inspiration extends Component {
   }
 }
 
-export default () => (
-  <SiteConsumer>
-    {({siteAssets, siteContent}) => (
-      <Inspiration siteAssets={siteAssets} siteContent={siteContent}/>
-    )}
-  </SiteConsumer>
-)
+const mapStateToProps = state => ({
+  siteContent: state.site.siteContent,
+  siteAssets: state.site.siteAssets
+})
+
+export default connect(mapStateToProps, null)(Inspiration)

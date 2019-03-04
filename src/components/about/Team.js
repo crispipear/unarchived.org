@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {SiteConsumer} from '../SiteContext';
+import {connect} from 'react-redux';
 
 class Team extends Component {
   render() {
@@ -47,10 +47,9 @@ class TeamMember extends Component {
     }
 }
 
-export default () => (
-  <SiteConsumer>
-    {({members, siteContent}) => (
-      <Team members={members} siteContent={siteContent}/>
-    )}
-  </SiteConsumer>
-)
+const mapStateToProps = state => ({
+  siteContent: state.site.siteContent,
+  members: state.site.members
+})
+
+export default connect(mapStateToProps, null)(Team)

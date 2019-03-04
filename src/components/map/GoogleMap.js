@@ -1,7 +1,7 @@
 import React from "react"
 import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
-import {SiteConsumer} from '../SiteContext';
+import {connect} from 'react-redux';
 
 const MapComponent = compose(
   withProps({
@@ -25,6 +25,8 @@ const MapComponent = compose(
     defaultOptions={{
       fullscreenControl:false,
       zoomControl:false,
+      mapTypeControl: false,
+      streetViewControl: false,
       styles: props.mapStyles
     }}
   />
@@ -34,16 +36,14 @@ class MapContainer extends React.Component {
   render() {
     return (
       <MapComponent
-        mapStyles={this.props.siteContent.mapStyles}
+        mapStyles={this.props.mapStyles}
       />
     )
   }
 }
 
-export default () => (
-  <SiteConsumer>
-    {({siteContent}) => (
-      <MapContainer siteContent={siteContent}/>
-    )}
-  </SiteConsumer>
-)
+const mapStateToProps = state => ({
+  mapStyles: state.site.siteContent.mapStyles
+})
+
+export default connect(mapStateToProps, null)(MapContainer)

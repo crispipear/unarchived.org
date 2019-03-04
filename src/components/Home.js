@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {SiteConsumer} from './SiteContext';
+import {connect} from 'react-redux';
 import '../styles/home.scss';
 
 class Home extends Component {
@@ -17,10 +17,9 @@ class Home extends Component {
   }
 }
 
-export default () => (
-  <SiteConsumer>
-    {({siteContent, siteAssets}) => (
-      <Home siteContent={siteContent} siteAssets={siteAssets}/>
-    )}
-  </SiteConsumer>
-)
+const mapStateToProps = state => ({
+  siteContent: state.site.siteContent,
+  siteAssets: state.site.siteAssets
+})
+
+export default connect(mapStateToProps, null)(Home)

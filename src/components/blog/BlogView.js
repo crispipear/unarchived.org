@@ -8,7 +8,7 @@ const BlogView = ({blog, author, closeBlog}) => (
             author.map((a, key) =>
             <div key={key} className="author">
                 <div style={{backgroundImage: `url(${a.picture})`}}/>
-                <a href={a.link} target="_blank">{a.name}</a>
+                <a href={a.link} target="_blank" rel="noopener noreferrer">{a.name}</a>
                 <h3>{a.role}</h3>
             </div>
             )
