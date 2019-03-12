@@ -38,8 +38,8 @@ class TeamMember extends Component {
                     <p className='role'>{this.props.info.role}</p>
                     <p className='desc'>{this.props.info.description}</p>
                     <div className='member-links'>
-                        <a target="_blank" href={this.props.info.website}>website</a>
-                        <a target="_blank" href={this.props.info.linkedin}>linkedin</a>
+                        <a target="_blank" rel="noopener noreferrer" href={this.props.info.website}>website</a>
+                        <a target="_blank" rel="noopener noreferrer" href={this.props.info.linkedin}>linkedin</a>
                     </div>
                 </div>
             </div>

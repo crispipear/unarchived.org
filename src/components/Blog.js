@@ -23,8 +23,7 @@ class Blog extends Component {
 
   _getAuthors = data => {
     let authors = []
-    let blogAuthor = data.split(",")
-    blogAuthor.map(a => {
+    data.map(a => {
       let member = this.props.members.find(m => m.name == a)
       authors.push({
         name: member.name,

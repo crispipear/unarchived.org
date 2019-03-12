@@ -1,38 +1,30 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-// import Belltown from '../../assets/belltown.png';
-// import Georgetown from '../../assets/georgetown.png';
-// import LakeUnion from '../../assets/lakeunion.png'
-
-// const neighborhoods = [
-//   {
-//     name: 'Belltown',
-//     img: Belltown
-//   },
-//   {
-//     name: 'Georgetown',
-//     img: Georgetown
-//   },
-//   {
-//     name: 'Lake Union',
-//     img: LakeUnion
-//   }
-// ]
+import {bindActionCreators} from 'redux';
+import {updateCurDistrict, toggleDistrictInfo} from '../../actions/mapActions';
+import DisritctInfo from './DistrictInfo';
 
 class Districts extends Component {
-  _handleClick = () => {
-    alert("feature still under development")
+  _handleClick = name => {
+    console.log(name)
+    this.props.updateCurDistrict(name)
+    this.props.toggleDistrictInfo(true)
   }
   render() {
     return (
       <div className='districts'>
         {
+          this.props.info
+          ?
+            <DisritctInfo/>
+          :
           Object.keys(this.props.districts).map((d, key) => 
             <div 
               key={key}
-              className = 'neighborhood_card' style={{backgroundImage: `url(${this.props.districts[d].thumbnail})`}}
-              onClick={this._handleClick}
+              className = 'district_card'
+              onClick={() => this._handleClick(this.props.districts[d].collectionId)}
             >
+              <div className = 'district_bg' style={{backgroundImage: `url(${this.props.districts[d].thumbnail})`}}/>
               <h1>{this.props.districts[d].name}</h1>
             </div>
           )
@@ -44,7 +36,15 @@ class Districts extends Component {
 
 
 const mapStateToProps = state => ({
-  districts: state.map.districts
+  districts: state.map.districts,
+  info: state.map.districtInfo
 })
 
-export default connect(mapStateToProps, null)(Districts)
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({
+    updateCurDistrict,
+    toggleDistrictInfo
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Districts)

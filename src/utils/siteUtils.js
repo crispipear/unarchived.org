@@ -45,17 +45,17 @@ const _processAssets = data => {
   }
 
 const _processBlogData = data => {
+  console.log(data)
     let blogs = []
     data.map(b => {
-        let content = []
-        b.blogContent.content.map(c => {content.push(c.content[0].value)})
         blogs.push({
         title: b.title,
-        author: b.author,
+        author: b.author.split(","),
+        intro: b.introContent,
         date: b.date.split('T').shift(),
         time: b.date.split('T').pop(),
         img: `https:${b.featuredImage.fields.file.url}`,
-        content: content
+        content: b.blogContent
         })
     })
 

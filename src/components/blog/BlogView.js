@@ -1,4 +1,5 @@
 import React from 'react';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 const BlogView = ({blog, author, closeBlog}) => (
     <div className='blogview'>
@@ -17,11 +18,9 @@ const BlogView = ({blog, author, closeBlog}) => (
     <div className="right">
         <div className="image" style={{backgroundImage: `url(${blog.img})`}}/>
         <h1>{blog.title}</h1>
-        <h3>created at {blog.date} {blog.time}</h3>
+        <h3 className="time">created at {blog.date} {blog.time}</h3>
         {
-            blog.content.map((c, key) => 
-                <p key={key}>{c}</p>
-            )
+            documentToReactComponents(blog.content)
         }
     </div>
   </div>  

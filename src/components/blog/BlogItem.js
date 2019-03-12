@@ -7,13 +7,15 @@ const BlogItem = ({blog, openBlog}) => (
             <h1>
                 {blog.title}
             </h1>
-            <h3>
-               by {blog.author} 
-            </h3>
+            <div>
+               {
+                   blog.author.map((a, key) =>
+                        <h3>{a}{key != blog.author.length - 1 && ", "}</h3>
+                    )
+               }
+            </div>
             <p>
-                {
-                    blog.content[0].replace(/(([^\s]+\s\s*){30})(.*)/,"$1…")
-                }
+                {blog.intro}
             </p>
             <span>
                 {blog.date} {blog.time}
