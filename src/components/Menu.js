@@ -11,12 +11,16 @@ const routes = [
     name: "Home"
   },
   {
-    path: "/about",
-    name: "About"
+    path: "/explore",
+    name: "Explore"
   },
   {
-    path: "/map",
-    name: "Map"
+    path: "/projects",
+    name: "Projects"
+  },
+  {
+    path: "/about",
+    name: "About"
   },
   {
     path: "/blog",

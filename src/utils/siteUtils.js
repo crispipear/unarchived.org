@@ -8,6 +8,7 @@ const firestore = fire.firestore();
 const storageRef = fire.storage().ref();
 
 const fetchSiteData = async () => {
+    _loadDistricts();
     const data = await fetchData('siteContent');
     _processSiteContent(data);
     const blog = await fetchData('blog');
@@ -16,7 +17,6 @@ const fetchSiteData = async () => {
     _processTeamMembers(members);
     const assets = await fetchAssets();
     _processAssets(assets);
-    _loadDistricts();
 }
 const _processTeamMembers = data => {
     let members = []
@@ -45,7 +45,6 @@ const _processAssets = data => {
   }
 
 const _processBlogData = data => {
-  console.log(data)
     let blogs = []
     data.map(b => {
         blogs.push({

@@ -1,10 +1,11 @@
 import React from "react";
-import { HashRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from './Home';
 import About from './About';
-import Map from './Map';
+import Explore from './Explore';
 import Blog from './Blog';
 import Menu from "./Menu";
+import Projects from './Projects';
 
 const routes = [
   {
@@ -12,12 +13,16 @@ const routes = [
     main: Home
   },
   {
-    path: "/about",
-    main: About
+    path: "/explore",
+    main: Explore
   },
   {
-    path: "/map",
-    main: Map
+    path: "/projects",
+    main: Projects
+  },
+  {
+    path: "/about",
+    main: About
   },
   {
     path: "/blog",
@@ -31,14 +36,16 @@ function Navigation() {
       <div className="app">
         <Menu/>
         <div style={{ marginLeft: '9vw'}}>
-          {routes.map((route, index) => (
-            <Route
-              exact
-              key={index}
-              path={route.path}
-              component={route.main}
-            />
-          ))}
+          <Switch>
+            {routes.map((route, index) => (
+              <Route
+                exact
+                key={index}
+                path={route.path}
+                component={route.main}
+              />
+            ))}
+          </Switch>
         </div>
       </div>
     </Router>
