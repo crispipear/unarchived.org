@@ -1,32 +1,66 @@
-@import './mixin';
+@import './variables.scss';
 
 .home{
-    background-position: center;
-    background-size: cover;
+    width: 100%!important;
+    margin: 0%!important;
+    padding: 0%!important;
+    height: 100vh;
+    position: relative;
+    .content{
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-sizing: border-box;
+        padding: 5%;
+    }
+    .video_link{
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        button{
+            color: white;
+            border-color: white;
+            &:after{
+                background: white;
+            }
+            &:hover{
+                color: $key1
+            }
+        }
+    }
     h1, p{
         color: white;
-        width: 50%;
+        width: 75%;
     }
     h1{
         font-size: 4.5rem;
         margin: 0;
-        font-weight: 400;
+        font-weight: 600;
     }
     p{
-        font-size: 1.1rem;
-        line-height: 1.75rem;
+        font-size: 1.25rem;
+        line-height: 2rem;
         letter-spacing: 0.05rem;
     }
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 0% 0% 10% 10%;
+    .overlay{
+        width: 100%!important;
+        height: 100%;
+        position: absolute;
+        background-color: $key1;
+        z-index: -1;
+    }
     .home-vid{
         pointer-events: none;
         position: fixed;
         right: 0;
         bottom: 0;
-        width: 91vw; 
-        z-index: -1;
-        filter: grayscale(25%) contrast(90%) brightness(50%);
+        width: 100vw; 
+        z-index: 0;
+        object-fit: cover;
+        object-position: center;
+        mix-blend-mode: soft-light;
+        filter: grayscale(100%) contrast(80%);
     }
 }

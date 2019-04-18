@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import Project from './about/Project';
-import Inspiration from './about/Inspiration';
-import Team from './about/Team';
 import '../styles/about.scss';
 
 class About extends Component {

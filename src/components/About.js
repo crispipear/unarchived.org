@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Project from './about/Project';
 import Inspiration from './about/Inspiration';
-import Team from './about/Team';
 import '../styles/about.scss';
 
 class About extends Component {
@@ -17,12 +16,6 @@ class About extends Component {
         <div className='about-banner' style={{backgroundImage: `url(${this.props.siteAssets.lp_bg})`}}/>
         <Project/>
         <Inspiration/>
-        <div className='about-block'>
-          <h1 className='mtt'>Meet the team</h1>
-          <h2>{this.props.siteContent.about_team_title}</h2>
-          <p>{this.props.siteContent.about_team_desc}</p>
-        </div>
-        <Team/>
       </div>  
     );
   }

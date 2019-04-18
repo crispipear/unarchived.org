@@ -6,6 +6,7 @@ import Explore from './Explore';
 import Blog from './Blog';
 import Menu from "./Menu";
 import Projects from './Projects';
+import Team from './Team';
 
 const routes = [
   {
@@ -25,6 +26,10 @@ const routes = [
     main: About
   },
   {
+    path: "/team",
+    main: Team
+  },
+  {
     path: "/blog",
     main: Blog
   },
@@ -35,7 +40,6 @@ function Navigation() {
     <Router>
       <div className="app">
         <Menu/>
-        <div style={{ marginLeft: '9vw'}}>
           <Switch>
             {routes.map((route, index) => (
               <Route
@@ -46,7 +50,6 @@ function Navigation() {
               />
             ))}
           </Switch>
-        </div>
       </div>
     </Router>
   );

@@ -6,9 +6,17 @@ class Home extends Component {
   render() {
     return (
       this.props.siteContent ?
-          <div className='home container'>
-            <h1>{this.props.siteContent.project_name}</h1>
-            <p>{this.props.siteContent.project_tagline}</p>
+          <div className='home'>
+            <div className='container'>
+              <div className='content'>
+                <h1>{this.props.siteContent.project_name}</h1>
+                <p>{this.props.siteContent.project_tagline}</p>
+              </div>
+              <div className='video_link'>
+                <button>watch full video</button>
+              </div>
+            </div>
+            <div className='overlay'/>
             <video autoPlay muted loop className="home-vid" src={this.props.siteAssets.videoBg}/>
           </div>        
         :

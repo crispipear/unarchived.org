@@ -1,4 +1,4 @@
-@import './mixin';
+@import './variables.scss';
 
 body{
   margin: 0;
@@ -10,11 +10,14 @@ body{
 
 h1,h2,h3,h4,h5{
   color: $header;
+  letter-spacing: 0.025rem;
 }
 
 p, span{
   color: $text;
-  font-size: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.015rem;
 }
 
 a{
@@ -24,13 +27,50 @@ a{
     color: $text
   }
 }
-
-
 .container{
-  width: 91vw;
+  width: 90vw;
+  margin-left: 10vw;
   position: absolute;
-  padding: 25px 50px;
+  padding: 5%;
   min-height: 100vh;
   box-sizing: border-box;
   display: flex;
+}
+
+button{
+  background: transparent;
+  padding: 4% 7.5%;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  color: $key1;
+  border-color: $key1;
+  transition: all 0.4s;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.05rem;
+  &:after{
+    content: '';
+    width: 150%;
+    height: 400%;
+    border-radius: 50%;
+    top: -200%;
+    left: -25%;
+    z-index: -1;
+    position: absolute;
+    background: $key1;
+    transition: all 0.4s;
+    transform: scale(0);
+    opacity: 0;
+  }
+  &:hover{
+    color: white;
+  }
+  &:hover::after{
+    transform: scale(1);
+    opacity: 1;
+  }
 }

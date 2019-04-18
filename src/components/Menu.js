@@ -4,6 +4,8 @@ import '../styles/menu.scss';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {updateSiteLocation} from '../actions/siteActions'
+import {ReactComponent as MAILICON} from '../assets/mail.svg';
+import {ReactComponent as LOGO} from '../assets/logo.svg';
 
 const routes = [
   {
@@ -23,20 +25,29 @@ const routes = [
     name: "About"
   },
   {
+    path: "/team",
+    name: "Team"
+  },
+  {
     path: "/blog",
     name: "Blog"
   },
 ];
 
 class Menu extends Component {
+  componentDidMount(){
+    this.props.updateSiteLocation(window.location.pathname)
+  }
   updateLoc = path => {
     this.props.updateSiteLocation(path)
   }
   render(){
         return(
-          <div className="menu">
+          <div className={this.props.siteLoc === '/' ? "menu menu_home" : "menu menu_reg"}>
             <div className="logo">
-                {<img src={this.props.siteAssets.logo}/>}
+                  <LOGO
+                    className={this.props.siteLoc === '/' ? "icon_home" : "icon_reg"}
+                  />
             </div>
             <div className="links">
                 {
@@ -46,7 +57,11 @@ class Menu extends Component {
                       key={key} 
                       to={r.path}
                       onClick={() => this.updateLoc(r.path)}
-                      className={this.props.siteLoc === r.path ? "active" : ""}
+                      className={this.props.siteLoc === r.path && this.props.siteLoc === '/' ? "active links_home" :
+                                 this.props.siteLoc === '/' ? "links_home" :
+                                 this.props.siteLoc === r.path ? "active links_reg":
+                                 "links_reg"
+                                }
                     >
                       {r.name}
                     </Link>
@@ -54,7 +69,11 @@ class Menu extends Component {
                 }
             </div>
             <div className="icon">
-                <a href='mailto: unarchived.org@gmail.com'>{<img src={this.props.siteAssets.contact}/>}</a>
+                <a href='mailto: unarchived.org@gmail.com'>
+                  <MAILICON
+                    className={this.props.siteLoc === '/' ? "icon_home" : "icon_reg"}
+                  />
+                </a>
             </div>
           </div>
         )
@@ -62,7 +81,6 @@ class Menu extends Component {
 }
 
 const mapStateToProps = state => ({
-  siteAssets: state.site.siteAssets,
   siteLoc: state.site.siteLoc
 })
 

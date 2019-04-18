@@ -22,8 +22,10 @@ const _processTeamMembers = data => {
     let members = []
     data.map(i => {
       let member = Object.assign({}, i)
-      member.portrait = `https:${i.portrait[0].fields.file.url}`
-      member.portraitAlt = `https:${i.portrait[1].fields.file.url}`
+      if (member.hasOwnProperty('portrait')){
+        member.portrait = `https:${i.portrait[0].fields.file.url}`
+        member.portraitAlt = `https:${i.portrait[1].fields.file.url}`
+      }
       members.push(member)
     })
     members.sort(compare)
@@ -49,11 +51,11 @@ const _processBlogData = data => {
     data.map(b => {
         blogs.push({
         title: b.title,
-        author: b.author.split(","),
+        author: b.author && b.author.split(","),
         intro: b.introContent,
-        date: b.date.split('T').shift(),
-        time: b.date.split('T').pop(),
-        img: `https:${b.featuredImage.fields.file.url}`,
+        date: b.date && b.date.split('T').shift(),
+        time: b.time && b.date.split('T').pop(),
+        img: b.img && `https:${b.featuredImage.fields.file.url}`,
         content: b.blogContent
         })
     })
