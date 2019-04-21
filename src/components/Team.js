@@ -27,27 +27,27 @@ class Team extends Component {
 
 class TeamMember extends Component {
     state = {
-      imgSrc: ""
+      imgAlt: false
     }
     componentDidMount(){
-      this.setState({
-        imgSrc: this.props.info.portrait
-      })
     }
     render(){
         return(
             <div className='member'>
-                {/* <img className='member-photo' src={this.state.imgSrc}
-                  onMouseOver={() => this.setState({imgSrc: this.props.info.portraitAlt})}
-                  onMouseOut={() => this.setState({imgSrc: this.props.info.portrait})}
-                /> */}
                 <div className='member-photo'
                   style={{
-                    backgroundImage: `url(${this.state.imgSrc})`
+                    backgroundImage: `url(${this.props.info.portrait})`
                   }}
-                  onMouseOver={() => this.setState({imgSrc: this.props.info.portraitAlt})}
-                  onMouseOut={() => this.setState({imgSrc: this.props.info.portrait})}
-                />
+                  onMouseOver={() => this.setState({imgAlt: true})}
+                  onMouseOut={() => this.setState({imgAlt: false})}
+                >
+                  <div className='member-photo-alt'
+                    style={{
+                      opacity: this.state.imgAlt ? 1 :0,
+                      backgroundImage: `url(${this.props.info.portraitAlt})`
+                    }}
+                  />
+                </div>
                 <div className='member-info-container'>
                     <div className='member-info'>
                       <h1>{this.props.info.name}</h1>

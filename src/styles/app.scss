@@ -1,4 +1,4 @@
-@import './variables.scss';
+@import './mixins';
 
 body{
   margin: 0;
@@ -52,6 +52,9 @@ button{
   text-transform: uppercase;
   font-size: 0.7rem;
   letter-spacing: 0.05rem;
+  &:active{
+    opacity: 0.25;
+  }
   &:after{
     content: '';
     width: 150%;
