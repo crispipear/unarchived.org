@@ -1,141 +1,177 @@
 @import './mixins';
 
 .blog{
-    flex-direction: column;
-    .blog_item{
-        border-radius: 7.5px;
-        overflow: hidden;
-        cursor: pointer;
-        width: 60vw;
-        height: 20vw;
-        box-sizing: border-box;
-        margin: 0% 0% 2.5% 0%;
+    .left{
+        width: 25%;
+        height: 80%;
+        position: fixed;
+        margin: 0%;
         display: flex;
-        flex-direction: row;
-        box-shadow: 0px 5px 30px 0px rgba($header, 0.1);
-        transition: all 0.25s;
-        border-radius: 7.5px;
-        &:hover{
-            box-shadow: 0px 5px 30px 0px rgba($header, 0.2);
-        }
-    }
-    .blog_item_img{
-        flex: 1;
-        background-position: center;
-        background-size: cover;
-    }
-    .blog_item_content{
-        flex: 1.15;
-        padding: 2.5% 5%; 
-        position: relative;       
-        h1{
-            color: $header;
-            font-size: 1.35rem;
-            font-weight: 400;
-        }
-        div{
-            display: flex;
-            flex-direction: row;
-        }
-        h3{
-            color: $key3;
-            margin: 0% 1.5% 0% 0%;
-            font-size: 0.9rem;
-            font-weight: 400;
-        }
-        p{
-            margin-top: 5%;
-            color: $text;
-            font-size: 0.8rem;
-            line-height: 1.15rem;
-        }
-        span{
-            color: rgba($text, 0.5);
-            font-size: 0.75rem;
-            position: absolute;
-            bottom: 20px;
-            right: 20px;   
-        }
-    }
-    .blogview{
-        position: relative;
-        .left{
-            position: fixed;
-            width: 15%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .right{
-            width: 75%;
-            margin-left: 25%;
-            padding-bottom: 7.5%;
-            .image{
+        justify-content: center;
+        align-items: center;
+        .blog-featured-item{
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            box-sizing: border-box;
+            padding: 10%;
+            .blog-featured-content{
                 width: 100%;
-                height: 50vh;
-                background-size: cover;
-                background-position: center;
-            }
-            h3.time{
-                font-size: 0.8rem;
-                font-weight: 300;
-                color: rgba($text, 0.75);
-                margin-bottom: 5%;
-            }
-            p{
-                font-size: 0.95rem;
-                line-height: 1.5rem;
-                margin-bottom: 3.5%;
-            }
-            a{
-                transition: all 0.2s;
-                text-decoration: underline;
-                &:hover{
-                    color: $key2;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                background-color: rgba($key3, 0.85);
+                box-sizing: border-box;
+                padding: 7.5%;
+                .author{
+                    flex: 2;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    .image{
+                        width: 32%;
+                        padding-bottom: 32%;
+                        border-radius: 50%;
+                        background-position: center 10%;
+                        background-size: 180%;
+                        margin-right: 5%;
+                    }
+                    .info{
+                        display: flex;
+                        flex-direction: column;
+                        span{
+                            line-height: 1.25rem;
+                            font-size: 0.75rem;
+                            &:first-child{
+                                font-size: 0.9rem;
+                                color: $key1;
+                                font-weight: 400;
+                            }
+                        }
+                    }
+                }
+                .content{
+                    flex: 5;
+                    h1{
+                        color: $key1;
+                        font-size: 1.65rem;
+                        line-height: 2rem;
+                    }
+                    p{
+                        line-height: 1.15rem;
+                        font-size: 0.7rem;
+                    }
+                }
+                .action{
+                    flex: 1;
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: flex-end;
+                    button{
+                        font-size: 0.6rem;
+                    }
                 }
             }
         }
-        .backButton{
-            cursor: pointer;
-            font-size: 30px;
-            transition: opacity 0.2s;
-            &:hover{
-                opacity: 0.5;
-            }
-            margin-bottom: 5%;
-        }
     }
-    .author{
+    .right{
+        margin-left: 37.5%;
+        width: 62.5%;
         display: flex;
-        align-items: center;
-        flex-direction: column;
-        text-align: center;
-        margin: 12.5% 0%;
-        a, h3{
-            margin: 0%;
-        }
-        a{
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: $header;
-            margin: 5% 0%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        justify-content: space-between;
+        .blog-item{
             cursor: pointer;
-            transition: color 0.15s;
+            transition: opacity 0.25s;
+            width: 48.75%;
+            height: 50vh;
+            margin-bottom: 2.5%;
+            display: flex;
+            flex-direction: column;
             &:hover{
-                color: $key2;
+                opacity: 0.75;
             }
-        }
-        h3{
-            font-size: 0.9rem;
-            font-weight: 300;
-            color: rgba($text, 0.75);
-        }
-        div{
-            border-radius: 50%;
-            width: 10vw;
-            height: 10vw;
-            background-size: 125%;
-            background-position: 50% 10%;
+            .top{
+                flex: 1.15;
+                position: relative;
+                display: flex;
+                align-items: flex-end;
+                box-sizing: border-box;
+                padding: 1% 5%;
+                h1{
+                    color: white;
+                    font-size: 1rem;
+                    line-height: 1.5rem;
+                }
+                .blog-image{
+                    z-index: -1;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    position: absolute;
+                    background-size: cover;
+                    background-position: center;
+                    &:before{
+                        position: absolute;
+                        z-index: 1;
+                        content: '';
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        background: rgba($key1, 0.75);
+                    }
+                }
+            }
+            .bottom{
+                flex: 1;
+                display: flex;
+                background: $key3;
+                box-sizing: border-box;
+                padding: 5%;
+                flex-direction: column;
+                justify-content: space-between;
+                p{
+                    font-size: 0.7rem;
+                    line-height: 1rem;
+                    margin: 0%;
+                    color: $text;
+                }
+                .blog-info{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    span{
+                        font-size: 0.7rem;
+                        line-height: 1rem;
+                        flex: 1;
+                        color: $key1;
+                        text-align: right;
+                    }
+                    .blog-author-container{
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        flex: 1.5;
+                        span{
+                        text-align: left;
+                        }
+                    }
+                    .blog-author-image{
+                        width: 20%;
+                        padding-bottom: 20%;
+                        border-radius: 50%;
+                        background-position: center 10%;
+                        background-size: 175%;
+                        margin-right: 5%;
+                    }
+                }
+            }
         }
     }
 }

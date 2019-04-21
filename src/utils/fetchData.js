@@ -11,7 +11,10 @@ export const fetchData = type => {
       let result = []
       entries.items.forEach(entry => {
         if(entry.fields) {
-          result.push(entry.fields)
+          result.push({
+            ...entry.fields,
+            createdAt: entry.sys.createdAt
+          })
         }
       })
       return result

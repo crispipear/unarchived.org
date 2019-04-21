@@ -9,30 +9,13 @@ class Blog extends Component {
   state = {
     blogView: false,
     blog: {},
-    author: {}
   }
 
   openBlog = blog => {
-    let author = this._getAuthors(blog.author)
     this.setState({
       blogView: true,
-      blog,
-      author
+      blog
     })
-  }
-
-  _getAuthors = data => {
-    let authors = []
-    data.map(a => {
-      let member = this.props.members.find(m => m.name == a)
-      authors.push({
-        name: member.name,
-        link: member.website,
-        role: member.role,
-        picture: member.portrait
-      })
-    })
-    return authors
   }
 
   closeBlog = () => {
@@ -42,17 +25,43 @@ class Blog extends Component {
   }
   
   render() {
+    console.log(this.props.blogs[0])
     return (
       <div className='blog container'>
-        {
-          this.state.blogView
-          ?
-          <BlogView closeBlog={this.closeBlog} author={this.state.author} blog={this.state.blog}/>
-          :
-          this.props.blogs.map((b, key) => 
-            <BlogItem openBlog={this.openBlog} key={key} blog={b}/>
-          )
-        }
+        <div className='left'>
+          {
+            this.props.blogs[0] &&
+            <div className='blog-featured-item' style={{backgroundImage: `url(${this.props.blogs[0].img})`}}>
+              <div className='blog-featured-content'>
+                <div className='author'>
+                  <div className='image' 
+                            style={{
+                              backgroundImage: `url(${this.props.blogs[0].author.portrait})`
+                            }}
+                        />
+                  <div className='info'>
+                    <span>{this.props.blogs[0].author.name}</span>
+                    <span>{this.props.blogs[0].date}</span>
+                  </div>
+                </div>
+                <div className='content'>
+                  <h1>{this.props.blogs[0].title}</h1>
+                  <p>{this.props.blogs[0].intro}</p>
+                </div>
+                <div className='action'>
+                  <button>read more</button>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+        <div className='right'>
+          {
+            this.props.blogs.map((blog, key) => key !== 0 &&
+              <BlogItem key={key} blog={blog}/>
+            )
+          }
+        </div>
       </div>  
     );
   }

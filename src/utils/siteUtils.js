@@ -11,12 +11,12 @@ const fetchSiteData = async () => {
     _loadDistricts();
     const data = await fetchData('siteContent');
     _processSiteContent(data);
-    const blog = await fetchData('blog');
-    _processBlogData(blog);
     const members = await fetchData('teamMember');
     _processTeamMembers(members);
     const assets = await fetchAssets();
     _processAssets(assets);
+    const blog = await fetchData('blog');
+    _processBlogData(blog);
 }
 const _processTeamMembers = data => {
     let members = []
@@ -47,19 +47,27 @@ const _processAssets = data => {
   }
 
 const _processBlogData = data => {
+    data.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt))
     let blogs = []
+    let members = store.getState().site.members
     data.map(b => {
+        let author = {}
+        if (b.author){
+          author = {
+            name: b.author,
+            portrait: members.find(member => member.name == b.author).portrait
+          }
+        }
+        let date = new Date(b.createdAt).toLocaleString().replace(/:\d{2}\s/,' ').replace(',',' ');
         blogs.push({
-        title: b.title,
-        author: b.author && b.author.split(","),
-        intro: b.introContent,
-        date: b.date && b.date.split('T').shift(),
-        time: b.time && b.date.split('T').pop(),
-        img: b.img && `https:${b.featuredImage.fields.file.url}`,
-        content: b.blogContent
+          title: b.title,
+          author: author,
+          intro: b.introContent,
+          content: b.blogContent,
+          date,
+          img: b.featuredImage && `https:${b.featuredImage.fields.file.url}`
         })
     })
-
     store.dispatch(updateBlogs(blogs))
 }
 
@@ -92,15 +100,6 @@ const _loadDistricts = async () => {
   }
 
   store.dispatch(updateDistricts(districts))
-}
-
-const _getColDocs = async (col) => {
-  let results = []
-  const collection = await firestore.collection(col).get()
-  collection.docs.map(doc => {
-    results.push(doc.data())
-  });
-  console.log(results)
 }
 
 export {
