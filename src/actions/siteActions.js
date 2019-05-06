@@ -2,7 +2,8 @@ export const UPDATE_SITE_CONTENT     = 'UPDATE_SITE_CONTENT',
              UPDATE_SITE_ASSETS      = 'UPDATE_SITE_ASSETS',
              UPDATE_MEMBERS          = 'UPDATE_MEMBERS',
              UPDATE_BLOGS            = 'UPDATE_BLOGS',
-             UPDATE_SITE_LOC         = 'UPDATE_SITE_LOC'
+             UPDATE_SITE_LOC         = 'UPDATE_SITE_LOC',
+             UPDATE_PROJECTS         = 'UPDATE_PROJECTS'
              
 export const updateSiteContent = content => ({
     type: UPDATE_SITE_CONTENT,
@@ -26,4 +27,9 @@ export const updateBlogs = blogs => ({
 export const updateSiteLocation = loc => ({
     type: UPDATE_SITE_LOC,
     payload: loc
+})
+
+export const updateProjects = projects => ({
+    type: UPDATE_PROJECTS,
+    payload: projects
 })

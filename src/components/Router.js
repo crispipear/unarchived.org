@@ -4,6 +4,7 @@ import Home from './Home';
 import About from './About';
 import Explore from './Explore';
 import Blog from './Blog';
+import BlogView from './BlogView';
 import Menu from "./Menu";
 import Projects from './Projects';
 import Team from './Team';
@@ -33,6 +34,10 @@ const routes = [
     path: "/blog",
     main: Blog
   },
+  {
+    path: "/blog/:title",
+    main: BlogView
+  }
 ];
 
 function Navigation() {

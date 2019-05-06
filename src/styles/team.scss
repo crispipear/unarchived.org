@@ -22,6 +22,18 @@
             font-size: 1.25rem;
             color: $text;
         }
+        @include laptop{
+            h1{
+                font-size: 1.75rem;
+            }
+            h3{
+                font-size: 1rem;
+            }
+            p{
+                font-size: 0.75rem;
+                line-height: 1.25rem;
+            }
+        }
         justify-content: center;
     }
     .right{
@@ -73,6 +85,10 @@
                             font-size: 0.75rem;
                         }
                     }
+                    .role{
+                        color: rgba($text, 0.8);
+                        letter-spacing: 0.015rem;
+                    }
                     h1{
                         margin: 0%;
                         color: $key1;
@@ -91,7 +107,7 @@
                         width: 22px;
                         height: 22px;
                         transition: opacity 0.25s;
-                        margin-left: 7.5%;
+                        margin-left: 10%;
                         cursor: pointer;
                         svg{
                             fill: $key1;
@@ -100,8 +116,8 @@
                             opacity: 0.5;
                         }
                         @include laptop{
-                            width: 18px;
-                            height: 18px;
+                            width: 16px;
+                            height: 16px;
                         }
                     }
                 }

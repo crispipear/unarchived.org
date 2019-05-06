@@ -1,5 +1,5 @@
 import {fetchData, fetchAssets} from './fetchData';
-import {updateSiteContent, updateSiteAssets, updateBlogs, updateMembers} from '../actions/siteActions';
+import {updateSiteContent, updateSiteAssets, updateBlogs, updateMembers, updateProjects} from '../actions/siteActions';
 import {updateDistricts} from '../actions/mapActions';
 import fire from '../utils/firebase';
 import store from '../store';
@@ -17,6 +17,8 @@ const fetchSiteData = async () => {
     _processAssets(assets);
     const blog = await fetchData('blog');
     _processBlogData(blog);
+    const projects = await fetchData('projects');
+    _processProjectsData(projects);
 }
 const _processTeamMembers = data => {
     let members = []
@@ -37,6 +39,18 @@ const _processTeamMembers = data => {
 
     store.dispatch(updateMembers(members))
   }
+
+const _processProjectsData = data => {
+    let projects = []
+    data.map(i => {
+      let project = Object.assign({}, i)
+      if(project.hasOwnProperty('titleImage')){
+        project.titleImage = `https:${i.titleImage.fields.file.url}`
+      }
+      projects.push(project)
+    })
+    store.dispatch(updateProjects(projects))
+}
 
 const _processAssets = data => {
       let siteAssets = {}

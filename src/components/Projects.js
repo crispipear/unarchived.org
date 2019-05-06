@@ -1,24 +1,35 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import '../styles/about.scss';
+import "../styles/projects.scss";
 
-class About extends Component {
+class Projects extends Component {
   render() {
     return (
-      <div className='about container'>
-        <div className='about-block'>
-          <h1 className='mtt'>Projects info page</h1>
-          <h2>{this.props.siteContent.about_title}</h2>
-          <p>{this.props.siteContent.about_short_desc}</p>
+      <div className='projects container'>
+        <div className='left'>
+            <h1>{this.props.siteContent.proj_title}</h1>
+            <p>{this.props.siteContent.proj_des}</p>
         </div>
-      </div>  
+        <div className='right'>
+            {
+              this.props.projects.map((proj, key) => 
+                <div className='project-item'>
+                   <div className='project-item-overlay'/>
+                   <h1>{proj.name}</h1>
+                   <div  className='project-item-bg'
+                    style={{backgroundImage: `url(${proj.titleImage})`}}/>
+                </div>
+              )
+            }
+        </div>  
+      </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
   siteContent: state.site.siteContent,
-  siteAssets: state.site.siteAssets
+  projects: state.site.projects
 })
 
-export default connect(mapStateToProps, null)(About)
+export default connect(mapStateToProps, null)(Projects)

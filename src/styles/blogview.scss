@@ -1,0 +1,67 @@
+@import './mixins';
+
+.blog-view{
+    flex-direction: column;
+    align-items: center;
+    .title{
+        color: $key1;
+        font-size: 1.75rem;
+    }
+    .blog-view-header{
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        height: 55vh;
+        margin: 1.5% 0 -3.5% 0;
+    }
+    .blog-view-content{
+        width: 75%;
+        h1,h2,h3,h4,h5,h6{
+            color: $key1;
+        }
+        p{
+            font-size: 0.85rem;
+            line-height: 1.75rem;
+            margin: 3% 0%;
+        }
+        a{
+            text-decoration: underline;
+            color: $key1;
+            transition: opacity 0.2s;
+            &:hover{
+                opacity: 0.5;
+            }
+        }
+    }
+    .back-button{
+        position: absolute;
+        top: 5%;
+        left: 5%;
+    }
+    .blog-view-author{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: center;
+        margin-bottom: 5%;
+        span{
+            font-size: 0.9rem;
+            &:first-child{
+                color: $header;
+                font-weight: 400;
+            }
+        }
+        div{
+            width: 75px;
+            height: 75px;
+            background-position: center 10%;
+            background-size: 175%;
+            border-radius: 50%;
+            margin: 0% 1%;
+            -webkit-box-shadow: 0px 0px 0px 4px rgba(255,255,255,1);
+            -moz-box-shadow: 0px 0px 0px 4px rgba(255,255,255,1);
+            box-shadow: 0px 0px 0px 4px rgba(255,255,255,1);
+        }
+    }
+}

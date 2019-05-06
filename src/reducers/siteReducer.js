@@ -1,12 +1,15 @@
 import {UPDATE_SITE_CONTENT, UPDATE_SITE_ASSETS, 
-        UPDATE_MEMBERS, UPDATE_BLOGS, UPDATE_SITE_LOC} from '../actions/siteActions';
+        UPDATE_MEMBERS, UPDATE_BLOGS, UPDATE_SITE_LOC,
+        UPDATE_PROJECTS
+    } from '../actions/siteActions';
 
 const initState = {
     siteContent: {},
     siteAssets: {},
     members: [],
     blogs: [],
-    siteLoc: window.location.hash.replace("#", "")
+    siteLoc: window.location.hash.replace("#", ""),
+    projects: []
 }
 
 export default function(state=initState, action){
@@ -35,6 +38,11 @@ export default function(state=initState, action){
             return{
                 ...state,
                 siteLoc: action.payload
+            }
+        case UPDATE_PROJECTS:
+            return{
+                ...state,
+                projects: action.payload
             }
         default:
             return state
