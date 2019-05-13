@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import "../styles/projects.scss";
+import ProjectItem from './projects/ProjectItem';
 
 class Projects extends Component {
   render() {
@@ -13,12 +14,7 @@ class Projects extends Component {
         <div className='right'>
             {
               this.props.projects.map((proj, key) => 
-                <div className='project-item'>
-                   <div className='project-item-overlay'/>
-                   <h1>{proj.name}</h1>
-                   <div  className='project-item-bg'
-                    style={{backgroundImage: `url(${proj.titleImage})`}}/>
-                </div>
+                <ProjectItem key={key} proj={proj}/>
               )
             }
         </div>  

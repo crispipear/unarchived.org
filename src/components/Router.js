@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from './Home';
 import About from './About';
@@ -7,6 +7,7 @@ import Blog from './Blog';
 import BlogView from './BlogView';
 import Menu from "./Menu";
 import Projects from './Projects';
+import ProjectView from './ProjectView';
 import Team from './Team';
 
 const routes = [
@@ -21,6 +22,10 @@ const routes = [
   {
     path: "/projects",
     main: Projects
+  },
+  {
+    path: "/projects/:title",
+    main: ProjectView
   },
   {
     path: "/about",
