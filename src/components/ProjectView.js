@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {ReactComponent as LEFT} from '../assets/left.svg';
 import {ReactComponent as RIGHT} from '../assets/right.svg';
+import {ReactComponent as BACK} from '../assets/back.svg';
+import {Link} from 'react-router-dom'
 
 class ProjectView extends Component {
     state = {
@@ -38,6 +40,9 @@ class ProjectView extends Component {
         return (
             (this.state.project.content && this.state.project.images) ?
             <div className='projects container'>
+            <div className='back-button'>
+                <Link to="/projects"><BACK/></Link>
+            </div>
             <div className='left-project-view'>
                 <h1>{this.state.project.name}</h1>
                 <p>

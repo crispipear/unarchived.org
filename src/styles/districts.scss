@@ -1,0 +1,18 @@
+@import './mixins';
+
+.districts{
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    .overlay{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        content: '';
+        opacity: 0.75;
+        z-index: 1;
+        background: $key1;
+    }
+}

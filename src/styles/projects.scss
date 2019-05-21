@@ -1,5 +1,9 @@
 @import './mixins';
-
+.back-button{
+    position: absolute;
+    top: 5%;
+    left: 5%;
+}
 .projects{
     display: flex;
     flex-direction: row;
@@ -21,6 +25,15 @@
             line-height: 2.5rem;
             color: $key1;
             font-size: 2rem;
+        }
+        @include laptop{
+            h1{
+                font-size: 1.5rem;
+            }
+            p{
+                font-size: 0.75rem;
+                line-height: 1.3rem;
+            }
         }
     }
     .left-project-view{
@@ -101,5 +114,16 @@
         height: 12px;
         margin: 0% 5px;
         border-radius: 50%;
+    }
+    @include laptop{
+        svg{
+            width: 12px;
+            height: 12px;
+        }
+        .circle{
+          width: 9px;
+          height: 9px;   
+          margin: 0% 3px;
+        }
     }
 }

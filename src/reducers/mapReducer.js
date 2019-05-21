@@ -2,7 +2,7 @@ import {UPDATE_DISTRICTS, UPDATE_CUR_DISTRICT, TOGGLE_DISTRICT_INFO, UPDATE_MAP_
 
 const initState = {
     districts: {},
-    curDistrict: "",
+    curDistrict: "pioneer-square",
     districtInfo: false,
     mapCenter: {lat: 47.6062, lng: -122.3321},
     zoom: 13

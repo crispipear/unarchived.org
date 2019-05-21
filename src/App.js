@@ -6,13 +6,22 @@ import Router from './components/Router';
 import {fetchSiteData} from './utils/siteUtils';
 
 class App extends Component {
+  state ={
+    ready: false
+  }
   componentDidMount(){
-    fetchSiteData()
+    fetchSiteData().then(() => {
+      this.setState({
+        ready: true
+      })
+    })
   }
   render() {
     return (
       <Provider store={store}>
-        <Router/>
+        {
+          this.state.ready && <Router/>
+        }
       </Provider>
     );
   }

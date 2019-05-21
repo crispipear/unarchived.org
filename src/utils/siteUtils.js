@@ -1,5 +1,5 @@
 import {fetchData, fetchAssets} from './fetchData';
-import {updateSiteContent, updateSiteAssets, updateBlogs, updateMembers, updateProjects} from '../actions/siteActions';
+import {updateSiteContent, updateSiteAssets, updateBlogs, updateMembers, updateProjects,updatePOIdata} from '../actions/siteActions';
 import {updateDistricts} from '../actions/mapActions';
 import fire from '../utils/firebase';
 import store from '../store';
@@ -8,7 +8,7 @@ const firestore = fire.firestore();
 const storageRef = fire.storage().ref();
 
 const fetchSiteData = async () => {
-    _loadDistricts();
+    // _loadDistricts();
     const data = await fetchData('siteContent');
     _processSiteContent(data);
     const members = await fetchData('teamMember');
@@ -19,7 +19,30 @@ const fetchSiteData = async () => {
     _processBlogData(blog);
     const projects = await fetchData('projects');
     _processProjectsData(projects);
+    const districts = await fetchData('districts');
+    const poi = await fetchData('poi');
+    _processPOI(districts, poi);
 }
+
+const _processPOI = (districts, poiData) => {
+  let data = {}
+  districts.map(district => {
+    let districtObj = {...district}
+    districtObj.image = `https:${district.image.fields.file.url}`
+    let pois = poiData.filter(poi => poi.districtId == district.districtId)
+    pois.map(poi => {
+      let images = []
+      poi.images.map(image =>{
+        images.push(`https:${image.fields.file.url}`)
+      })
+      poi.images = images
+    })
+    districtObj.poi = pois
+    data[district.districtId] = districtObj
+  })
+  store.dispatch(updatePOIdata(data)) 
+}
+
 const _processTeamMembers = data => {
     let members = []
     data.map(i => {

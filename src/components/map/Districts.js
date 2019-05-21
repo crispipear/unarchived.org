@@ -1,50 +1,25 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {updateCurDistrict, toggleDistrictInfo} from '../../actions/mapActions';
-import DisritctInfo from './DistrictInfo';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import '../../styles/districts.scss';
 
 class Districts extends Component {
-  _handleClick = name => {
-    console.log(name)
-    this.props.updateCurDistrict(name)
-    this.props.toggleDistrictInfo(true)
-  }
-  render() {
-    return (
-      <div className='districts'>
-        {
-          this.props.info
-          ?
-            <DisritctInfo/>
-          :
-          Object.keys(this.props.districts).map((d, key) => 
-            <div 
-              key={key}
-              className = 'district_card'
-              onClick={() => this._handleClick(this.props.districts[d].collectionId)}
-            >
-              <div className = 'district_bg' style={{backgroundImage: `url(${this.props.districts[d].thumbnail})`}}/>
-              <h1>{this.props.districts[d].name}</h1>
+    state = {}
+    componentDidMount(){
+
+    }
+    render() {
+        return (
+            <div className='districts' style={{backgroundImage: `url(${this.props.poiData.image})`}}>
+                <div className='overlay'/>
             </div>
-          )
-        }
-      </div>  
-    );
-  }
+        );
+    }
 }
-
-
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({}, dispatch)
+}
 const mapStateToProps = state => ({
-  districts: state.map.districts,
-  info: state.map.districtInfo
+    poiData: state.site.poiData[state.map.curDistrict]
 })
-
-function mapDispatchToProps(dispatch){
-  return bindActionCreators({
-    updateCurDistrict,
-    toggleDistrictInfo
-  }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Districts)
+export default connect(mapStateToProps, mapDispatchToProps)(Districts);

@@ -3,7 +3,8 @@ export const UPDATE_SITE_CONTENT     = 'UPDATE_SITE_CONTENT',
              UPDATE_MEMBERS          = 'UPDATE_MEMBERS',
              UPDATE_BLOGS            = 'UPDATE_BLOGS',
              UPDATE_SITE_LOC         = 'UPDATE_SITE_LOC',
-             UPDATE_PROJECTS         = 'UPDATE_PROJECTS'
+             UPDATE_PROJECTS         = 'UPDATE_PROJECTS',
+             UPDATE_POI_DATA         = 'UPDATE_POI_DATA'
              
 export const updateSiteContent = content => ({
     type: UPDATE_SITE_CONTENT,
@@ -32,4 +33,9 @@ export const updateSiteLocation = loc => ({
 export const updateProjects = projects => ({
     type: UPDATE_PROJECTS,
     payload: projects
+})
+
+export const updatePOIdata = data => ({
+    type: UPDATE_POI_DATA,
+    payload: data
 })
