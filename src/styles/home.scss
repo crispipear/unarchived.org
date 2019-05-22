@@ -19,16 +19,6 @@
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;
-        button{
-            color: white;
-            border-color: white;
-            &:after{
-                background: white;
-            }
-            &:hover{
-                color: $key1
-            }
-        }
     }
     h1, p{
         color: white;

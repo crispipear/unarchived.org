@@ -12,6 +12,15 @@ class Districts extends Component {
         return (
             <div className='districts' style={{backgroundImage: `url(${this.props.poiData.image})`}}>
                 <div className='overlay'/>
+                <div className='content'>
+                    <div className='left'>
+                      <h1>{this.props.poiData.districtName}</h1>
+                        <button onClick={() => this.props.setPoiView(true)} className='white'>SEE ALL POIs</button>
+                    </div>
+                    <div className='right'>
+                    <p>{this.props.poiData.description}</p>
+                    </div>
+                </div>
             </div>
         );
     }

@@ -1,9 +1,11 @@
+/*global google*/
 import React from "react"
 import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, Polygon } from "react-google-maps";
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {updateCurDistrict, toggleDistrictInfo, updateMapCenter, updateMapZoom} from '../../actions/mapActions';
+import ANCHOR from '../../assets/anchor.png';
 
 const MapComponent = compose(
   withProps({
@@ -25,6 +27,7 @@ const MapComponent = compose(
     zoom={props.zoom}
     center={props.center}
     defaultOptions={{
+      showsBuildings: false,
       fullscreenControl:false,
       zoomControl:false,
       mapTypeControl: false,
@@ -32,7 +35,7 @@ const MapComponent = compose(
       styles: props.mapStyles
     }}
   >
-    {
+    {/* {
       props.districts.map((d, key) => 
         <Polygon 
           key={key}
@@ -47,6 +50,18 @@ const MapComponent = compose(
           path={d.coords}
         />
       )
+    } */}
+    {
+      props.poiData.map((poi, key) =>
+      <Marker
+        key={key}
+        position={{ lat: poi.location.lat, lng: poi.location.lon}}
+        icon={{
+          url: ANCHOR,
+          scaledSize: new google.maps.Size(25, 34)
+        }}
+      />
+      )
     }
   </GoogleMap>
 )
@@ -56,9 +71,10 @@ class MapContainer extends React.Component {
     districts: []
   }
   componentDidMount(){
-    this.setState({
-      districts: this._getDistricts()
-    })
+    // this.setState({
+    //   districts: this._getDistricts()
+    // })
+    console.log(this.props.poiData)
   }
   _getDistricts = () => {
     let results = []
@@ -91,6 +107,7 @@ class MapContainer extends React.Component {
         mapStyles={this.props.mapStyles}
         districts={this.state.districts}
         districtClick={this.districtClick}
+        poiData={this.props.poiData}
         center={this.props.mapCenter}
         zoom={this.props.zoom}
       />
@@ -102,7 +119,8 @@ const mapStateToProps = state => ({
   mapStyles: state.site.siteContent.mapStyles,
   districts: state.map.districts,
   mapCenter: state.map.mapCenter,
-  zoom: state.map.zoom
+  zoom: state.map.zoom,
+  poiData: state.site.poiData[state.map.curDistrict].poi
 })
 
 function mapDispatchToProps(dispatch){

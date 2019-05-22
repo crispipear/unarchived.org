@@ -4,8 +4,8 @@ const initState = {
     districts: {},
     curDistrict: "pioneer-square",
     districtInfo: false,
-    mapCenter: {lat: 47.6062, lng: -122.3321},
-    zoom: 13
+    mapCenter: {lat: 47.6015, lng: -122.3343},
+    zoom: 17
 }
 
 export default function(state=initState, action){

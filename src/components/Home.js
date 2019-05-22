@@ -13,7 +13,7 @@ class Home extends Component {
                 <p>{this.props.siteContent.project_tagline}</p>
               </div>
               <div className='video_link'>
-                <button>watch full video</button>
+                <button className='white'>watch full video</button>
               </div>
             </div>
             <div className='overlay'/>

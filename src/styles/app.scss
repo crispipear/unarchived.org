@@ -3,7 +3,7 @@
 body{
   margin: 0;
   padding: 0;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
   font-weight: 300;
   overflow-x: hidden;
 }
@@ -77,6 +77,16 @@ button, a.button{
   &:hover::after{
     transform: scale(1);
     opacity: 1;
+  }
+}
+button.white{
+  color: white;
+  border-color: white;
+  &:after{
+      background: white;
+  }
+  &:hover{
+      color: $key1
   }
 }
 
