@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import '../styles/map.scss';
 import Districts from './map/Districts';
 import POIView from './map/POIView';
 
-export default class Map extends Component {
+class Explore extends Component {
   state = {
     poi: false
   }
@@ -26,3 +28,12 @@ export default class Map extends Component {
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({}, dispatch)
+}
+const mapStateToProps = state => ({
+  blogs: state.site.blogs
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Explore);

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from './Home';
 import About from './About';
@@ -9,6 +11,7 @@ import Menu from "./Menu";
 import Projects from './Projects';
 import ProjectView from './ProjectView';
 import Team from './Team';
+import Video from './Video';
 
 const routes = [
   {
@@ -44,25 +47,36 @@ const routes = [
     main: BlogView
   }
 ];
-
-function Navigation() {
-  return (
-    <Router>
-      <div className="app">
-        <Menu/>
-          <Switch>
-            {routes.map((route, index) => (
-              <Route
-                exact
-                key={index}
-                path={route.path}
-                component={route.main}
-              />
-            ))}
-          </Switch>
-      </div>
-    </Router>
-  );
+class Navigation extends Component {
+  render(){
+    return (
+      <Router>
+        <div className="app">
+          {
+            this.props.video && <Video/>
+          }
+          <Menu/>
+            <Switch>
+              {routes.map((route, index) => (
+                <Route
+                  exact
+                  key={index}
+                  path={route.path}
+                  component={route.main}
+                />
+              ))}
+            </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
 
-export default Navigation;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({}, dispatch)
+}
+const mapStateToProps = state => ({
+  video: state.site.video
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

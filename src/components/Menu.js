@@ -6,6 +6,8 @@ import {bindActionCreators} from 'redux';
 import {updateSiteLocation} from '../actions/siteActions'
 import {ReactComponent as MAILICON} from '../assets/mail.svg';
 import {ReactComponent as LOGO} from '../assets/logo.svg';
+import DARK_LOGO from '../assets/logo_dark.png';
+import LIGHT_LOGO from '../assets/logo_light.png';
 
 const routes = [
   {
@@ -45,9 +47,11 @@ class Menu extends Component {
         return(
           <div className={this.props.siteLoc === '/' ? "menu menu_home" : "menu menu_reg"}>
             <div className="logo">
-                  <LOGO
-                    className={this.props.siteLoc === '/' ? "icon_home" : "icon_reg"}
-                  />
+                  {
+                    this.props.siteLoc === '/' ?
+                    <img src={LIGHT_LOGO}/>:
+                    <img src={DARK_LOGO}/>
+                  }
             </div>
             <div className="links">
                 {

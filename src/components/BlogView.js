@@ -19,20 +19,21 @@ class BlogView extends Component {
     render() {
         const blog = this.state.blog
         return (
-            this.state.blog && this.state.blog.author?
+            // this.state.blog && this.state.blog.author?
+            this.state.blog &&
             <div className='blog-view container'>
                 <h1 className='title'>{blog.title}</h1>
                 <div className='blog-view-header' style={{backgroundImage: `url(${blog.img})`}}/>
-                <div className='blog-view-author'>
+                {/* <div className='blog-view-author'>
                     <span>{blog.author.name}</span>
                     <div style={{backgroundImage: `url(${blog.author.portrait})`}}/>
                     <span>{blog.date}</span>
-                </div>
+                </div> */}
                 <div className='blog-view-content'>
                     {documentToReactComponents(blog.content)}
                 </div>
              </div>  
-          :<div/>
+        //   :<div/>
         );
     }
 }

@@ -1,11 +1,14 @@
-import {UPDATE_DISTRICTS, UPDATE_CUR_DISTRICT, TOGGLE_DISTRICT_INFO, UPDATE_MAP_CENTER, UPDATE_MAP_ZOOM} from '../actions/mapActions';
+import {UPDATE_DISTRICTS, UPDATE_CUR_DISTRICT, TOGGLE_DISTRICT_INFO, UPDATE_MAP_CENTER, UPDATE_MAP_ZOOM,
+    UPDATE_POI_INDEX, TOGGLE_POI_INFO} from '../actions/mapActions';
 
 const initState = {
     districts: {},
     curDistrict: "pioneer-square",
     districtInfo: false,
     mapCenter: {lat: 47.6015, lng: -122.3343},
-    zoom: 17
+    zoom: 14,
+    index: 0,
+    info: false
 }
 
 export default function(state=initState, action){
@@ -34,6 +37,16 @@ export default function(state=initState, action){
             return{
                 ...state,
                 zoom: action.payload
+            }
+        case UPDATE_POI_INDEX:
+            return{
+                ...state,
+                index: action.payload
+            }
+        case TOGGLE_POI_INFO:
+            return{
+                ...state,
+                info: action.payload
             }
         default:
             return state

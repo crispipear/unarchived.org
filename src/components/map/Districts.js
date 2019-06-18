@@ -4,10 +4,6 @@ import { bindActionCreators } from 'redux';
 import '../../styles/districts.scss';
 
 class Districts extends Component {
-    state = {}
-    componentDidMount(){
-
-    }
     render() {
         return (
             <div className='districts' style={{backgroundImage: `url(${this.props.poiData.image})`}}>
@@ -15,7 +11,7 @@ class Districts extends Component {
                 <div className='content'>
                     <div className='left'>
                       <h1>{this.props.poiData.districtName}</h1>
-                        <button onClick={() => this.props.setPoiView(true)} className='white'>SEE ALL POIs</button>
+                        <button onClick={() => this.props.setPoiView(true)} className='white'>SEE ALL POINTS OF INTEREST</button>
                     </div>
                     <div className='right'>
                     <p>{this.props.poiData.description}</p>

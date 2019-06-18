@@ -15,14 +15,14 @@ const BlogItem = ({ blog, path }) => (
                     {blog.intro}
                 </p>
                 <div className='blog-info'>
-                    <div className='blog-author-container'>
+                    {/* <div className='blog-author-container'>
                         <div className='blog-author-image'
                             style={{
                                 backgroundImage: `url(${blog.author.portrait})`
                             }}
                         />
                         <span>{blog.author.name}</span>
-                    </div>
+                    </div> */}
                     <span>
                         {blog.date}
                     </span>

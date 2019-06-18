@@ -4,13 +4,13 @@ const FeaturedBlog = ({ blog, path }) => (
     <div className='blog-featured-item' style={{ backgroundImage: `url(${blog.img})` }}>
         <div className='blog-featured-content'>
             <div className='author'>
-                <div className='image'
+                {/* <div className='image'
                     style={{
                         backgroundImage: `url(${blog.author.portrait})`
                     }}
-                />
+                /> */}
                 <div className='info'>
-                    <span>{blog.author.name}</span>
+                    {/* <span>{blog.author.name}</span> */}
                     <span>{blog.date}</span>
                 </div>
             </div>
