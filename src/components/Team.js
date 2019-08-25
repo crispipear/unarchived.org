@@ -52,6 +52,10 @@ class TeamMember extends Component {
                     <div className='member-info'>
                       <h1>{this.props.info.name}</h1>
                       <p className='role'>{this.props.info.role}</p>
+                      {
+                        this.props.info.duration &&
+                        <p className='role'>( {this.props.info.duration} )</p>
+                      }
                     </div>
                     <div className='member-links'>
                         <a target="_blank" rel="noopener noreferrer" href={this.props.info.website}>

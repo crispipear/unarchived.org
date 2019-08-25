@@ -36,8 +36,15 @@ const _processPOI = (districts, poiData) => {
         images.push(`https:${image.fields.file.url}`)
       })
       poi.images = images
+      poi.posterImage = poi.posterImage && `https:${poi.posterImage.fields.file.url}`
     })
     districtObj.poi = pois
+    districtObj.poi.sort(comparePOI)
+    function comparePOI(a, b){
+      if(a.order < b.order) return -1
+      if(a.order > b.order) return 1
+      return 0
+    }
     data[district.districtId] = districtObj
   })
   store.dispatch(updatePOIdata(data)) 
@@ -50,6 +57,14 @@ const _processTeamMembers = data => {
       if (member.hasOwnProperty('portrait')){
         member.portrait = `https:${i.portrait[0].fields.file.url}`
         member.portraitAlt = `https:${i.portrait[1].fields.file.url}`
+      }
+      if (member.hasOwnProperty('startDate')){
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ];
+        let start = monthNames[new Date(member.startDate).getMonth()]
+        let end = member.endDate ? monthNames[new Date(member.endDate).getMonth()] : 'present'
+        member.duration = start + ' - ' + end
       }
       members.push(member)
     })
@@ -86,19 +101,10 @@ const _processAssets = data => {
 const _processBlogData = data => {
     data.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt))
     let blogs = []
-    let members = store.getState().site.members
     data.map(b => {
-        let author = {}
-        if (b.author){
-          author = {
-            name: b.author,
-            portrait: members.find(member => member.name == b.author).portrait
-          }
-        }
-        let date = new Date(b.createdAt).toLocaleString().replace(/:\d{2}\s/,' ').replace(',',' ');
+        let date = new Date(b.createdAt).toLocaleString("en", {month: 'long', year: 'numeric', day: 'numeric'});
         blogs.push({
           title: b.title,
-          author: author,
           intro: b.introContent,
           content: b.blogContent,
           date,

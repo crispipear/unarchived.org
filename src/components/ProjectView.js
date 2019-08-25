@@ -32,8 +32,14 @@ class ProjectView extends Component {
         }, ()=>{console.log(this.state.project)})
     }
     handleClick = index =>{
+        let i = index
+        if (i > this.state.project.content.length-1){
+            i = this.state.project.content.length-1
+        }else if (i < 0){
+            i = 0
+        }
         this.setState({
-            index: index < 0 ? 0 : index > this.state.project.content.length-1 ? this.state.project.content-1 : index
+            index: i
         })
     }
     render() {

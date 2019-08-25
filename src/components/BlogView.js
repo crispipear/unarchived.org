@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import "../styles/blogview.scss";
+import {Link} from 'react-router-dom'
+import {ReactComponent as BACK} from '../assets/back.svg';
 
 class BlogView extends Component {
     state = {
@@ -22,6 +24,9 @@ class BlogView extends Component {
             // this.state.blog && this.state.blog.author?
             this.state.blog &&
             <div className='blog-view container'>
+                <div className='back-button'>
+                    <Link to="/blog"><BACK/></Link>
+                </div>
                 <h1 className='title'>{blog.title}</h1>
                 <div className='blog-view-header' style={{backgroundImage: `url(${blog.img})`}}/>
                 {/* <div className='blog-view-author'>

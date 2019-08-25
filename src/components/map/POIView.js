@@ -9,6 +9,7 @@ import POIInfo from './POIInfo';
 
 class POIView extends Component {
     render() {
+        let fPoi = this.props.poiData[this.props.poiIndex]
         return (
             this.props.poiInfo?
             <POIInfo/>
@@ -19,13 +20,15 @@ class POIView extends Component {
                         <BACK />
                     </div>
                     <div className='poi-featured'>
-                        <img src={this.props.poiData[this.props.poiIndex].images[0]}/>
-                        <h1>
-                            {this.props.poiData[this.props.poiIndex].poiName}
-                        </h1>
-                        <p>
-                            {this.props.poiData[this.props.poiIndex].summary}
-                        </p>
+                        <div className='featured-content'>
+                            <h1>
+                                {fPoi.poiName}
+                            </h1>
+                            <p>
+                                {fPoi.summary}
+                            </p>
+                        </div>
+                        <div className='featured-image' style={{backgroundImage: `url(${fPoi.posterImage ? fPoi.posterImage : fPoi.images[0]})`}}/>
                         <button onClick={() => this.props.togglePOIInfo(true)} style={{padding: '2% 3.5%'}}>SEE MORE</button>
                     </div>
                     <div className='poi-list'>
@@ -37,7 +40,7 @@ class POIView extends Component {
                                 >
                                     <div className='poi-list-item-bg'
                                         style={{
-                                            backgroundImage: `url(${poi.images[0]})`
+                                            backgroundImage: `url(${poi.posterImage ? poi.posterImage : poi.images[0]})`
                                         }}
                                     />
                                     <div className='poi-list-item-overlay'

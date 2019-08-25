@@ -25,7 +25,7 @@
                 box-sizing: border-box;
                 padding: 7.5%;
                 .author{
-                    flex: 2;
+                    flex: 0.75;
                     display: flex;
                     flex-direction: row;
                     align-items: center;
@@ -55,12 +55,12 @@
                     flex: 5;
                     h1{
                         color: $key1;
-                        font-size: 1.65rem;
-                        line-height: 2rem;
+                        font-size: 1.4rem;
+                        line-height: 1.8rem;
                     }
                     p{
                         line-height: 1.15rem;
-                        font-size: 0.7rem;
+                        font-size: 0.75rem;
                     }
                 }
                 .action{
@@ -136,7 +136,7 @@
                 flex-direction: column;
                 justify-content: space-between;
                 p{
-                    font-size: 0.7rem;
+                    font-size: 0.75rem;
                     line-height: 1rem;
                     margin: 0%;
                     color: $text;

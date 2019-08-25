@@ -13,8 +13,8 @@ class Video extends Component {
     }
     render() {
         return (
-            <div className='video' onClick={this.closeVideo}>
-                <div className='video-close'>
+            <div className='video'>
+                <div className='video-close' onClick={this.closeVideo}>
                     <img src={CLOSE}/>
                 </div>
                 <video 

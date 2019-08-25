@@ -11,7 +11,7 @@ class Districts extends Component {
                 <div className='content'>
                     <div className='left'>
                       <h1>{this.props.poiData.districtName}</h1>
-                        <button onClick={() => this.props.setPoiView(true)} className='white'>SEE ALL POINTS OF INTEREST</button>
+                        <button onClick={() => this.props.setPoiView(true)} className='white'>EXPLORE SELECTED SITES</button>
                     </div>
                     <div className='right'>
                     <p>{this.props.poiData.description}</p>
