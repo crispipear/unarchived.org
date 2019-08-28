@@ -29,7 +29,7 @@ class POIView extends Component {
                             </p>
                         </div>
                         <div className='featured-image' style={{backgroundImage: `url(${fPoi.posterImage ? fPoi.posterImage : fPoi.images[0]})`}}/>
-                        <button onClick={() => this.props.togglePOIInfo(true)} style={{padding: '2% 3.5%'}}>SEE MORE</button>
+                        <button onClick={() => this.props.togglePOIInfo(true)}>SEE MORE</button>
                     </div>
                     <div className='poi-list'>
                         {

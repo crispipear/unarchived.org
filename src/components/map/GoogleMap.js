@@ -4,8 +4,10 @@ import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, Polygon } from "react-google-maps";
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {updateCurDistrict, toggleDistrictInfo, updateMapCenter, updateMapZoom} from '../../actions/mapActions';
+import {updateCurDistrict, toggleDistrictInfo, updateMapCenter, updateMapZoom, updatePOIIndex} from '../../actions/mapActions';
 import ANCHOR from '../../assets/anchor.png';
+import ANCHOR2 from '../../assets/anchor2.png';
+
 
 const MapComponent = compose(
   withProps({
@@ -56,8 +58,9 @@ const MapComponent = compose(
       <Marker
         key={key}
         position={{ lat: poi.location.lat, lng: poi.location.lon}}
+        onClick={() => props.updatePOIIndex(key)}
         icon={{
-          url: ANCHOR,
+          url: props.poiIndex == key ? ANCHOR : ANCHOR2,
           scaledSize: new google.maps.Size(25, 34)
         }}
       />
@@ -75,6 +78,9 @@ class MapContainer extends React.Component {
     //   districts: this._getDistricts()
     // })
     console.log(this.props.poiData)
+  }
+  _updatePOIIndex = index =>{
+    this.props.updatePOIIndex(index)
   }
   _getDistricts = () => {
     let results = []
@@ -110,6 +116,8 @@ class MapContainer extends React.Component {
         poiData={this.props.poiData}
         center={this.props.mapCenter}
         zoom={this.props.zoom}
+        updatePOIIndex={this._updatePOIIndex}
+        poiIndex={this.props.poiIndex}
       />
     )
   }
@@ -120,11 +128,13 @@ const mapStateToProps = state => ({
   districts: state.map.districts,
   mapCenter: state.map.mapCenter,
   zoom: state.map.zoom,
-  poiData: state.site.poiData[state.map.curDistrict].poi
+  poiData: state.site.poiData[state.map.curDistrict].poi,
+  poiIndex: state.map.index
 })
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
+    updatePOIIndex,
     updateCurDistrict,
     toggleDistrictInfo,
     updateMapCenter,
