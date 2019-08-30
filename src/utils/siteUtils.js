@@ -62,8 +62,10 @@ const _processTeamMembers = data => {
         const monthNames = ["January", "February", "March", "April", "May", "June",
           "July", "August", "September", "October", "November", "December"
         ];
-        let start = monthNames[new Date(member.startDate).getMonth()]
-        let end = member.endDate ? monthNames[new Date(member.endDate).getMonth()] : 'present'
+        let start = monthNames[new Date(member.startDate).getMonth()] + ' ' + new Date(member.startDate).getFullYear()
+        let end = member.endDate
+                  ? monthNames[new Date(member.endDate).getMonth()] + ' ' + new Date(member.endDate).getFullYear()
+                  : 'present'
         member.duration = start + ' - ' + end
       }
       members.push(member)
