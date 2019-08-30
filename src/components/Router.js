@@ -23,6 +23,14 @@ const routes = [
     main: Explore
   },
   {
+    path: "/explore/:district",
+    main: Explore
+  },
+  {
+    path: "/explore/:district/:poi",
+    main: Explore
+  },
+  {
     path: "/projects",
     main: Projects
   },

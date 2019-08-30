@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import '../../styles/districts.scss';
+import {Link} from 'react-router-dom'
 
 class Districts extends Component {
     render() {
@@ -11,7 +12,9 @@ class Districts extends Component {
                 <div className='content'>
                     <div className='left'>
                       <h1>{this.props.poiData.districtName}</h1>
-                        <button onClick={() => this.props.setPoiView(true)} className='white'>EXPLORE SELECTED SITES</button>
+                        <Link to={`/explore/${this.props.poiData.districtName.replace(/[|&;$%@"<>()+,.']/g, "").replace(/\s+/g, '-').toLowerCase()}`}>
+                            <button className='white'>EXPLORE SELECTED SITES</button>
+                        </Link>
                     </div>
                     <div className='right'>
                     <p>{this.props.poiData.description}</p>

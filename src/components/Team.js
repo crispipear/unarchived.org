@@ -51,10 +51,10 @@ class TeamMember extends Component {
                 <div className='member-info-container'>
                     <div className='member-info'>
                       <h1>{this.props.info.name}</h1>
-                      <p className='role'>{this.props.info.role}</p>
+                      <p className='role' style={{color: '#1c1c1c', opacity: 0.8}}>{this.props.info.role}</p>
                       {
                         this.props.info.duration &&
-                        <p className='role'>( {this.props.info.duration} )</p>
+                        <p className='role'>({this.props.info.duration})</p>
                       }
                     </div>
                     <div className='member-links'>

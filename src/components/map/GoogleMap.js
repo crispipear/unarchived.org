@@ -77,7 +77,7 @@ class MapContainer extends React.Component {
     // this.setState({
     //   districts: this._getDistricts()
     // })
-    console.log(this.props.poiData)
+    // console.log(this.props.poiData)
   }
   _updatePOIIndex = index =>{
     this.props.updatePOIIndex(index)

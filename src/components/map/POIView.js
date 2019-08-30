@@ -6,8 +6,22 @@ import GoogleMap from './GoogleMap';
 import { ReactComponent as BACK } from '../../assets/back.svg';
 import {updatePOIIndex, togglePOIInfo} from '../../actions/mapActions';
 import POIInfo from './POIInfo';
+import {Link} from 'react-router-dom';
 
 class POIView extends Component {
+    componentDidMount(){
+        if(this.props.poiName !== "" && this.props.poiName !== null){
+            let poiIndex = this.props.poiData.findIndex(
+                p => 
+                p.poiName.replace(/[|&;$%@"<>()+,.']/g, "").replace(/\s+/g, '-').toLowerCase() == this.props.poiName
+            )
+            if(poiIndex){
+                this.props.updatePOIIndex(poiIndex)
+                this.props.togglePOIInfo(true)
+            }
+        }
+    }
+
     render() {
         let fPoi = this.props.poiData[this.props.poiIndex]
         return (
@@ -16,9 +30,9 @@ class POIView extends Component {
             :
             <div className='poi'>
                 <div className='left'>
-                    <div className='back-button' onClick={() => this.props.setPoiView(false)}>
+                    <Link className='back-button' to='/explore'>
                         <BACK />
-                    </div>
+                    </Link>
                     <div className='poi-featured'>
                         <div className='featured-content'>
                             <h1>
@@ -29,7 +43,10 @@ class POIView extends Component {
                             </p>
                         </div>
                         <div className='featured-image' style={{backgroundImage: `url(${fPoi.posterImage ? fPoi.posterImage : fPoi.images[0]})`}}/>
-                        <button onClick={() => this.props.togglePOIInfo(true)}>SEE MORE</button>
+                        <Link 
+                            to={`/explore/${this.props.curDistrict}/${fPoi.poiName.replace(/[|&;$%@"<>()+,.']/g, "").replace(/\s+/g, '-').toLowerCase()}`}>
+                            <button>SEE MORE</button>
+                        </Link>
                     </div>
                     <div className='poi-list'>
                         {
@@ -62,6 +79,7 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({updatePOIIndex, togglePOIInfo}, dispatch)
 }
 const mapStateToProps = state => ({
+    curDistrict: state.map.curDistrict,
     poiData: state.site.poiData[state.map.curDistrict].poi,
     poiIndex: state.map.index,
     poiInfo: state.map.info
