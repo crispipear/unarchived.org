@@ -24,7 +24,10 @@ class App extends Component {
     return (
       <Provider store={store}>
         <LoadScreen ready={this.state.ready}/>
-        <Router/>
+        {
+          this.state.ready &&
+          <Router/>
+        }
       </Provider>
     );
   }

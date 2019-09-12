@@ -11,14 +11,14 @@ import {Link} from 'react-router-dom';
 class POIView extends Component {
     componentDidMount(){
         if(this.props.poiName !== "" && this.props.poiName !== null){
-            let poiIndex = this.props.poiData.findIndex(
-                p => 
-                p.poiName.replace(/[|&;$%@"<>()+,.']/g, "").replace(/\s+/g, '-').toLowerCase() == this.props.poiName
-            )
-            if(poiIndex){
-                this.props.updatePOIIndex(poiIndex)
-                this.props.togglePOIInfo(true)
-            }
+            console.log(this.props.poiName)
+            this.props.poiData.map((p, key)=> {
+                if(p.poiName.replace(/[|&;$%@"<>()+,.']/g, "").replace(/\s+/g, '-').toLowerCase() == this.props.poiName)
+                {
+                    this.props.updatePOIIndex(key)
+                    this.props.togglePOIInfo(true)
+                }
+            })
         }
     }
 

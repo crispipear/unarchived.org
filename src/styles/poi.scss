@@ -6,7 +6,8 @@
 }
 .poiInfo{
     box-sizing: border-box;
-    padding: 5%;
+    // padding: 5%;
+    width: 100%;
     min-height: 100%;
     h1{
         color: $key1;
@@ -14,6 +15,50 @@
     }
     img{
         max-width: 100%;
+    }
+    .poiInfo-left{
+        display: inline-block;
+        width: 39%;
+        min-height: 100vh;
+        padding: 7.5% 5% 5% 5%;
+    }
+    .poiInfo-right{
+        display: inline-block;
+        position: fixed;
+        width: 45%;
+        right: 0;
+        height: 100vh;
+        border-left: $key3 solid 1px;
+    }
+    .poiInfo-content{
+        margin-top: 5%;
+    }
+    .poiInfo-video{
+        position: relative; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        iframe{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .poiInfo-images{
+        border-top: $key3 solid 1px;
+        position: absolute;
+        width: 100%;
+        height: 51.75%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 95%;
+            height: 80%;
+            object-fit: contain;
+        }
     }
 }
 .poi{

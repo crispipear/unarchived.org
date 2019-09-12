@@ -8,9 +8,12 @@ import {Link} from 'react-router-dom';
 
 import '../../styles/poi.scss';
 class POIInfo extends Component {
+    state = {
+        imgIndex: 0
+    }
     selectPoi = index => this.setState({selected: index})
     componentDidMount(){
-        console.log(this.props.poiData[this.props.poiIndex])
+        // console.log(this.props.poiData[this.props.poiIndex])
     }
     render() {
         const poi = this.props.poiData[this.props.poiIndex]
@@ -21,24 +24,34 @@ class POIInfo extends Component {
                     className='back-button'>
                     <BACK />
                 </Link>
-                {
-                    poi.videoUrl &&
-                    <div style={{position: 'relative', paddingTop: '56.25%', marginTop: '10%'}}>
-                        <iframe src={poi.videoUrl}
-                        style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}
-                        frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
+                <div className='poiInfo-left'>
+                    <h1>{poi.poiName}</h1>
+                    <div className='poiInfo-content'>
+                        {documentToReactComponents(poi.description)}                     
                     </div>
-                }
-                <h1>{poi.poiName}</h1>
-                <div className='poiInfo-content'>
-                    {documentToReactComponents(poi.description)}                     
                 </div>
-                <div className='poiInfo-images'>
-                    {
-                        poi.images.map((img, key) =>
-                            <img src={img} key={key}/>
-                        )
-                    }
+                <div className='poiInfo-right'>
+                    <div className='poiInfo-video'
+                         style={{
+                             paddingTop: poi.videoUrl ? '56.25%' : '0%',
+                             height: poi.videoUrl ? 'unset' : '48.25%'
+                         }}
+                    >
+                        {   
+                            poi.videoUrl ?
+                            <iframe src={poi.videoUrl}
+                            frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
+                            :
+                            <p>360 video is currently unavailable</p>
+                        }
+                    </div>
+                    <div className='poiInfo-images'>
+                        {
+                            poi.images.map((img, key) =>
+                                <img src={img} key={key} style={{opacity: key == this.state.imgIndex ? 1 :0}}/>
+                            )
+                        }
+                    </div>
                 </div>
             </div>
         );

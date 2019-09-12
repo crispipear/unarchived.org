@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom'
 class Districts extends Component {
     render() {
         return (
+            this.props.poiData ?
             <div className='districts' style={{backgroundImage: `url(${this.props.poiData.image})`}}>
                 <div className='overlay'/>
                 <div className='content'>
@@ -21,6 +22,8 @@ class Districts extends Component {
                     </div>
                 </div>
             </div>
+            :
+            <div/>
         );
     }
 }
