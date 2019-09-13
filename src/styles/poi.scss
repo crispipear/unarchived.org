@@ -1,5 +1,4 @@
 @import './mixins';
-
 .poiInfo, .poi{
     position: absolute;
     width: 100%;
@@ -38,6 +37,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        background: $key3;
         iframe{
             position: absolute;
             top: 0;
@@ -46,18 +46,75 @@
             height: 100%;
         }
     }
+    .poiInfo-modal{
+        z-index: 10;
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba($header, 0.96);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        img{
+            margin-left: -10%;
+            width: 70%;
+            height: 80%;
+            object-fit: contain;
+        }
+    }
     .poiInfo-images{
         border-top: $key3 solid 1px;
         position: absolute;
         width: 100%;
-        height: 51.75%;
+        height: 57%;
         display: flex;
         justify-content: center;
         align-items: center;
-        img{
-            width: 95%;
+        .image{
+            width: 80%;
             height: 80%;
-            object-fit: contain;
+            margin-top: -2.5%;
+            position: relative;
+            img{
+                cursor: pointer;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                position: absolute;
+                transition: all 0.3s;
+                &:hover{
+                    cursor: zoom-in;
+                }
+            }
+        }
+        svg{
+            cursor: pointer;
+            width: 15px;
+            height: 15px;
+            fill: $key1;
+            margin: -1.5% 2.5% 0% 2.5%;
+            transition: all 0.2s;
+            &:hover{
+                opacity: 0.5;
+            }
+        }
+        .imgCount{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 7%;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+            div{
+                cursor: pointer;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                margin: 0% 4px;
+            }
         }
     }
 }

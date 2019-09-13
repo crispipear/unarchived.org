@@ -5,16 +5,17 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { ReactComponent as BACK } from '../../assets/back.svg';
 import {togglePOIInfo} from '../../actions/mapActions';
 import {Link} from 'react-router-dom';
+import Gallery from './POIGallery';
 
 import '../../styles/poi.scss';
 class POIInfo extends Component {
     state = {
-        imgIndex: 0
+        index: 0,
+        modal: false
     }
-    selectPoi = index => this.setState({selected: index})
-    componentDidMount(){
-        // console.log(this.props.poiData[this.props.poiIndex])
-    }
+    updateIndex = index => this.setState({index})
+    toggleModal = () => this.setState({modal: !this.state.modal})
+
     render() {
         const poi = this.props.poiData[this.props.poiIndex]
         return (
@@ -24,6 +25,15 @@ class POIInfo extends Component {
                     className='back-button'>
                     <BACK />
                 </Link>
+                <div className = 'poiInfo-modal' 
+                    onClick={this.toggleModal}
+                    style={{
+                        opacity: this.state.modal ? 1 : 0,
+                        pointerEvents: this.state.modal ? 'all' : 'none'
+                    }}
+                >
+                    <img src={poi.images[this.state.index]}/>
+                </div>
                 <div className='poiInfo-left'>
                     <h1>{poi.poiName}</h1>
                     <div className='poiInfo-content'>
@@ -34,7 +44,7 @@ class POIInfo extends Component {
                     <div className='poiInfo-video'
                          style={{
                              paddingTop: poi.videoUrl ? '56.25%' : '0%',
-                             height: poi.videoUrl ? 'unset' : '48.25%'
+                             height: poi.videoUrl ? 'unset' : '43%'
                          }}
                     >
                         {   
@@ -45,13 +55,7 @@ class POIInfo extends Component {
                             <p>360 video is currently unavailable</p>
                         }
                     </div>
-                    <div className='poiInfo-images'>
-                        {
-                            poi.images.map((img, key) =>
-                                <img src={img} key={key} style={{opacity: key == this.state.imgIndex ? 1 :0}}/>
-                            )
-                        }
-                    </div>
+                    <Gallery images={poi.images} index={this.state.index} updateIndex={this.updateIndex} toggleModal={this.toggleModal}/>
                 </div>
             </div>
         );

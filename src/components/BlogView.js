@@ -21,24 +21,18 @@ class BlogView extends Component {
     render() {
         const blog = this.state.blog
         return (
-            // this.state.blog && this.state.blog.author?
             this.state.blog &&
             <div className='blog-view container'>
                 <div className='back-button'>
                     <Link to="/blog"><BACK/></Link>
                 </div>
                 <h1 className='title'>{blog.title}</h1>
+                <span>{blog.date}</span>
                 <div className='blog-view-header' style={{backgroundImage: `url(${blog.img})`}}/>
-                {/* <div className='blog-view-author'>
-                    <span>{blog.author.name}</span>
-                    <div style={{backgroundImage: `url(${blog.author.portrait})`}}/>
-                    <span>{blog.date}</span>
-                </div> */}
                 <div className='blog-view-content'>
                     {documentToReactComponents(blog.content)}
                 </div>
              </div>  
-        //   :<div/>
         );
     }
 }
