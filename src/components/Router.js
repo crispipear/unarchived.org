@@ -12,6 +12,7 @@ import Projects from './Projects';
 import ProjectView from './ProjectView';
 import Team from './Team';
 import Video from './Video';
+import {ReactComponent as MENUICON} from '../assets/menu.svg';
 
 const routes = [
   {
@@ -56,14 +57,27 @@ const routes = [
   }
 ];
 class Navigation extends Component {
+  state = {
+    openedMenu: false
+  }
+  toggleMenu = () => {
+    this.setState({
+      openedMenu: !this.state.openedMenu
+    })
+  }
+
   render(){
     return (
       <Router>
-        <div className="app">
+        <div className="app" onClick={() => {(this.props.view == 2 && this.state.openedMenu) && this.toggleMenu()}}>
           {
             this.props.video && <Video/>
           }
-          <Menu/>
+          {
+            this.props.view == 2 && <MENUICON className="menu-trigger" onClick={this.toggleMenu}/>
+          }
+          <Menu openedMenu={this.state.openedMenu} toggleMenu={this.toggleMenu}/>
+          
             <Switch>
               {routes.map((route, index) => (
                 <Route
@@ -81,10 +95,12 @@ class Navigation extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({}, dispatch)
+  return bindActionCreators({
+  }, dispatch)
 }
 const mapStateToProps = state => ({
-  video: state.site.video
+  video: state.site.video,
+  view: state.site.view
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

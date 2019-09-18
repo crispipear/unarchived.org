@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {updateSiteLocation} from '../actions/siteActions'
 import {ReactComponent as MAILICON} from '../assets/mail.svg';
-import {ReactComponent as LOGO} from '../assets/logo.svg';
 import DARK_LOGO from '../assets/logo_dark.png';
 import LIGHT_LOGO from '../assets/logo_light.png';
 
@@ -45,12 +44,16 @@ class Menu extends Component {
   }
   render(){
         return(
-          <div className={this.props.siteLoc === '/' ? "menu menu_home" : "menu menu_reg"}>
+          <div className={this.props.siteLoc === '/' ? "menu menu_home" : "menu menu_reg"}
+               style={{left: (this.props.view == 2 && !this.props.openedMenu) ? '-51vw': 0}}
+          >
             <div className="logo">
                   {
-                    this.props.siteLoc === '/' ?
-                    <img src={LIGHT_LOGO}/>:
+                    (this.props.siteLoc === '/' && this.props.view == 1) ?
+                    <img src={LIGHT_LOGO}/>
+                    :(this.props.siteLoc !== '/' && this.props.view == 1) ?
                     <img src={DARK_LOGO}/>
+                    : <img src={LIGHT_LOGO}/>
                   }
             </div>
             <div className="links">
@@ -85,7 +88,8 @@ class Menu extends Component {
 }
 
 const mapStateToProps = state => ({
-  siteLoc: state.site.siteLoc
+  siteLoc: state.site.siteLoc,
+  view: state.site.view
 })
 
 function mapDispatchToProps(dispatch){

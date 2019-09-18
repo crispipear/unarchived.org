@@ -19,6 +19,10 @@
         font-size: 2.5em;
         letter-spacing: 0.5rem;
         opacity: 0;
+        @include mobile{
+            font-size: 28px;
+            letter-spacing: 8px;
+        }
     }
     h1.bold{
         font-weight: 500;

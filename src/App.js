@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Provider } from 'react-redux'
-import store from './store'
 import './styles/app.scss';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Router from './components/Router';
 import LoadScreen from './components/LoadScreen';
+import { updateView } from './actions/siteActions';
 
 import {fetchSiteData} from './utils/siteUtils';
 
@@ -19,18 +20,41 @@ class App extends Component {
         })
       }, 2000)
     })
+    this.updateDimensions()
+    window.addEventListener("resize", this.updateDimensions)
   }
+
+  componentWillUnmount(){
+    window.removeEventListener("resize", this.updateDimensions)
+  }
+
+  updateDimensions = () => {
+    if(window.innerWidth <= 1023){
+      this.props.updateView(2)
+    }else{
+      this.props.updateView(1)
+    }
+  }
+
   render() {
     return (
-      <Provider store={store}>
+      <div>
         <LoadScreen ready={this.state.ready}/>
         {
           this.state.ready &&
           <Router/>
         }
-      </Provider>
+      </div>
     );
   }
 }
 
-export default App;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    updateView
+  }, dispatch)
+}
+const mapStateToProps = state => ({
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -77,8 +77,37 @@
             width: 80%;
         }
     }
+    @include mobile{
+        transition: all 0.4s;
+        left: -50vw;
+        width: 50vw;
+        background-color: rgba($key1, 0.95)!important;
+        .logo{width: 72%}
+        -webkit-box-shadow: 6px 0px 16px 0px rgba(0,0,0,0.1);
+        -moz-box-shadow: 6px 0px 16px 0px rgba(0,0,0,0.1);
+        box-shadow: 6px 0px 16px 0px rgba(0,0,0,0.1);
+        .links a{
+            color: white!important;
+            &::before{
+                background: white!important;
+            }
+        }
+        .icon_reg path{
+            fill: white!important;
+        }
+    }
 }
 
+.menu-trigger{
+    cursor: pointer;
+    z-index: 10;
+    width: 28px;
+    height: 28px;
+    top: 20px;
+    left: 20px;
+    fill: white;
+    position: fixed;
+}
 .menu_reg{
     background-color: $key3;
 }

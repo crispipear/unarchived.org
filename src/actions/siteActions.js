@@ -5,7 +5,8 @@ export const UPDATE_SITE_CONTENT     = 'UPDATE_SITE_CONTENT',
              UPDATE_SITE_LOC         = 'UPDATE_SITE_LOC',
              UPDATE_PROJECTS         = 'UPDATE_PROJECTS',
              UPDATE_POI_DATA         = 'UPDATE_POI_DATA',
-             TOGGLE_VIDEO            = 'TOGGLE_VIDEO'
+             TOGGLE_VIDEO            = 'TOGGLE_VIDEO',
+             UPDATE_VIEW             = 'UPDATE_VIEW'
              
 export const updateSiteContent = content => ({
     type: UPDATE_SITE_CONTENT,
@@ -44,4 +45,9 @@ export const updatePOIdata = data => ({
 export const toggleVideo = toggle => ({
     type: TOGGLE_VIDEO,
     payload: toggle
+})
+
+export const updateView = view => ({
+    type: UPDATE_VIEW,
+    payload: view
 })

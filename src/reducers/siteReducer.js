@@ -1,6 +1,7 @@
 import {UPDATE_SITE_CONTENT, UPDATE_SITE_ASSETS, 
         UPDATE_MEMBERS, UPDATE_BLOGS, UPDATE_SITE_LOC,
-        UPDATE_PROJECTS, UPDATE_POI_DATA, TOGGLE_VIDEO
+        UPDATE_PROJECTS, UPDATE_POI_DATA, TOGGLE_VIDEO,
+        UPDATE_VIEW
     } from '../actions/siteActions';
 
 const initState = {
@@ -11,7 +12,8 @@ const initState = {
     siteLoc: window.location.hash.replace("#", ""),
     projects: [],
     poiData: {},
-    video: false
+    video: false,
+    view: 1 //web = 1, mobile = 2
 }
 
 export default function(state=initState, action){
@@ -55,6 +57,11 @@ export default function(state=initState, action){
             return{
                 ...state,
                 video: action.payload
+            }
+        case UPDATE_VIEW:
+            return{
+                ...state,
+                view: action.payload
             }
         default:
             return state

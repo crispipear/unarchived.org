@@ -38,6 +38,10 @@ a{
   min-height: 100vh;
   box-sizing: border-box;
   display: flex;
+  @include mobile{
+    width: 100vw;
+    margin-left: 0%;
+  }
 }
 
 button, a.button{
