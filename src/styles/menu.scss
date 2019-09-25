@@ -3,6 +3,7 @@
 .menu{
     position: fixed;
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     width: 10vw;
     box-sizing: border-box;
     padding: 30px 20px;
@@ -79,7 +80,7 @@
     }
     @include mobile{
         transition: all 0.4s;
-        left: -50vw;
+        right: -50vw;
         width: 50vw;
         background-color: rgba($key1, 0.95)!important;
         .logo{width: 72%}
@@ -103,11 +104,18 @@
     z-index: 10;
     width: 28px;
     height: 28px;
-    top: 20px;
-    left: 20px;
-    fill: white;
+    top: 24px;
+    right: 24px;
     position: fixed;
 }
+
+.menu-trigger-home{
+    fill: white;
+}
+.menu-trigger-reg{
+    fill: $key1;
+}
+
 .menu_reg{
     background-color: $key3;
 }

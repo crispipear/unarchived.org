@@ -74,7 +74,9 @@ class Navigation extends Component {
             this.props.video && <Video/>
           }
           {
-            this.props.view == 2 && <MENUICON className="menu-trigger" onClick={this.toggleMenu}/>
+            this.props.view == 2 && 
+            <MENUICON className={this.props.siteLoc == '/' ? "menu-trigger menu-trigger-home" : "menu-trigger menu-trigger-reg"} 
+            onClick={this.toggleMenu}/>
           }
           <Menu openedMenu={this.state.openedMenu} toggleMenu={this.toggleMenu}/>
           
@@ -100,7 +102,8 @@ function mapDispatchToProps(dispatch) {
 }
 const mapStateToProps = state => ({
   video: state.site.video,
-  view: state.site.view
+  view: state.site.view,
+  siteLoc: state.site.siteLoc
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

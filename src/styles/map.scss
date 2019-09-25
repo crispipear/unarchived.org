@@ -13,5 +13,6 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
 .map{
     padding: 0%;
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
 }
 

@@ -5,20 +5,35 @@
     margin: 0%!important;
     padding: 0%!important;
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     position: relative;
+    background: $key1;
+    .container{
+        @include mobile{
+            flex-direction: column;
+        }
+    }
     .content{
         flex: 2;
         display: flex;
         flex-direction: column;
         justify-content: center;
         box-sizing: border-box;
-        padding: 5%;
+        @include mobile{
+            flex: 1;
+            justify-content: flex-end;
+            margin-bottom: 24px;
+        }
     }
     .video_link{
         flex: 1;
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;
+        @include mobile{
+            justify-content: flex-start;
+            align-items: flex-start;   
+        }
     }
     h1, p{
         color: white;
@@ -34,12 +49,28 @@
         line-height: 2rem;
         letter-spacing: 0.05rem;
     }
+    @include mobile{
+        h1, p{
+            width: unset;
+        }
+        h1{
+            font-size: 40px;
+        }
+        p{
+            font-size: 16px;
+            line-height: 24px;
+        }
+    }
     .overlay{
         width: 100%!important;
         height: 100%;
-        position: absolute;
+        position: fixed;
         background-color: $key1;
         z-index: -1;
+        @include mobile{
+            opacity: 0.6;
+            z-index: 1;
+        }
     }
     .home-vid{
         pointer-events: none;
@@ -52,5 +83,10 @@
         object-position: center;
         mix-blend-mode: soft-light;
         filter: grayscale(100%) contrast(80%);
+        @include mobile{
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
     }
 }

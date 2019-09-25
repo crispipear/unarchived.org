@@ -28,7 +28,7 @@ class Home extends Component {
               </div>
             </div>
             <div className='overlay'/>
-            <video autoPlay muted loop className="home-vid" ref="vidBg" src={this.props.siteAssets.videoBg}/>
+            <video autoPlay muted loop playsInline className="home-vid" ref="vidBg" src={this.props.siteAssets.videoBg}/>
           </div>        
         :
         <div className='home'/>

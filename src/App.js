@@ -8,6 +8,19 @@ import { updateView } from './actions/siteActions';
 
 import {fetchSiteData} from './utils/siteUtils';
 
+
+////////////////////////////////////////////////////////////////////
+//set vh property for mobile devices based on the browser tool bar//
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+window.addEventListener('resize', () => {
+  // We execute the same script as before
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+});
+///////////////////////////////////////////////////////////////////
+
 class App extends Component {
   state ={
     ready: false

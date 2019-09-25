@@ -19,6 +19,7 @@
         display: inline-block;
         width: 39%;
         min-height: 100vh;
+        min-height: calc(var(--vh, 1vh) * 100);
         padding: 7.5% 5% 5% 5%;
     }
     .poiInfo-right{
@@ -27,6 +28,7 @@
         width: 45%;
         right: 0;
         height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
         border-left: $key3 solid 1px;
     }
     .poiInfo-content{
@@ -51,6 +53,7 @@
         position: fixed;
         width: 100%;
         height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
         background-color: rgba($header, 0.96);
         display: flex;
         align-items: center;
@@ -124,6 +127,7 @@
         box-sizing: border-box;
         width: 61%;
         height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
         padding: 5% 5% 3.5% 5%;
         display: flex;
         flex-direction: column;
