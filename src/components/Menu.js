@@ -45,7 +45,7 @@ class Menu extends Component {
   render(){
         return(
           <div className={this.props.siteLoc === '/' ? "menu menu_home" : "menu menu_reg"}
-               style={{right: (this.props.view == 2 && !this.props.openedMenu) ? '-51vw': 0}}
+               style={{right: (this.props.view == 2 && !this.props.openedMenu) ? '-51vw' : this.props.view == 2 ? 0 : 'unset'}}
           >
             <div className="logo">
                   {

@@ -3,6 +3,10 @@
     position: absolute;
     top: 5%;
     left: 5%;
+    @include mobile{
+        top: 24px;
+        left: 24px;
+    }
 }
 .projects{
     display: flex;
@@ -18,6 +22,7 @@
         height: calc(var(--vh, 1vh) * 100);
         @include mobile{
             height: unset;
+            box-sizing: border-box;
             padding: 24px!important;
         }
     }

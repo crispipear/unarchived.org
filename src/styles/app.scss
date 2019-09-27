@@ -44,7 +44,7 @@ a{
   box-sizing: border-box;
   display: flex;
   @include mobile{
-    width: 96vw;
+    width: 100%;
     margin-left: 0%;
     z-index: 2;
     padding: 24px;
@@ -121,6 +121,10 @@ button.white{
   @include laptop{
     width: 40px;
     height: 40px;
+  }
+  @include mobile{
+    width: 36px;
+    height: 36px;
   }
 }
 
