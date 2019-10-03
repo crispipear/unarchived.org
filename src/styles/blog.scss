@@ -161,4 +161,38 @@
             }
         }
     }
+    @include mobile{
+        display: flex;
+        flex-direction: column;
+        padding-top: 60px;
+        h1{
+            color: $key1;
+        }
+        .right{
+            width: 100%;
+            position: unset;
+            margin: 0%;
+            height: unset;
+            display: unset;
+            .blog-item{
+                margin-bottom: 24px;
+                .top{
+                    h1{
+                        font-size: 20px;
+                    }
+                }
+                .bottom{
+                    p{
+                        font-size: 14px;
+                        line-height: 22px;
+                    }
+                }
+                .blog-info{
+                    span{
+                        font-size: 14px!important;
+                    }
+                }
+            }
+        }
+    }
 }

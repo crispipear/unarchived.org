@@ -90,6 +90,12 @@ class Navigation extends Component {
                 />
               ))}
             </Switch>
+            {/* {
+              this.props.view == 2 &&
+              <div className="footer">
+                <p>&copy; unarchived.org 2019</p>
+              </div>
+            } */}
         </div>
       </Router>
     );

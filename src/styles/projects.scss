@@ -13,18 +13,9 @@
     flex-direction: row;
     align-items: flex-start;
     padding: 0%;
-    @include mobile{
-        flex-direction: column;
-        padding-top: 80px;
-    }
     .left, .right, .right-project-view, .left-project-view{
         height: 100vh;
         height: calc(var(--vh, 1vh) * 100);
-        @include mobile{
-            height: unset;
-            box-sizing: border-box;
-            padding: 24px!important;
-        }
     }
     .left, .left-project-view{
         flex: 1;
@@ -45,11 +36,9 @@
                 font-size: 1.5rem;
             }
         }
-        @include mobile{
-            h1{
-                font-size: 28px;
-                line-height: 36px;
-            }
+        img{
+            width: 100%;
+            margin-bottom: 16px;
         }
     }
     .left-project-view{
@@ -57,10 +46,6 @@
     }
     .right, .right-project-view{
         flex: 2.5;
-        @include mobile{
-            flex: 1;
-            width: 100%;
-        }
     }
       .right{
         display: flex;
@@ -122,7 +107,32 @@
                 }
             }
         }
-        @include mobile{
+    }
+    .right-project-view{
+        background-position: center;
+        background-size: cover;
+    }
+    @include mobile{
+        flex-direction: column;
+        padding-top: 80px;
+        .left, .right, .right-project-view, .left-project-view{
+            box-sizing: border-box;
+            padding: 24px!important;
+        }
+        .left, .left-project-view{
+            flex: unset;
+            justify-content: flex-start;
+            height: unset;
+            h1{
+                font-size: 28px;
+                line-height: 36px;
+            }
+        }
+        .right, .right-project-view{
+            flex: 1;
+            width: 100%;
+        }
+        .right{
             flex-direction: column;
             flex-wrap: unset;
             .project-item{
@@ -133,10 +143,6 @@
                 align-items: center;
             }
         }
-    }
-    .right-project-view{
-        background-position: center;
-        background-size: cover;
     }
 }
 .project-view-pagination{

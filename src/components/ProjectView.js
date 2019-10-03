@@ -51,10 +51,21 @@ class ProjectView extends Component {
             </div>
             <div className='left-project-view'>
                 <h1>{this.state.project.name}</h1>
-                <p>
-                    {this.state.project.content[this.state.index]}
-                </p>
                 {
+                    this.props.view == 1 ?
+                    <p>
+                        {this.state.project.content[this.state.index]}
+                    </p>
+                    :
+                    this.state.project.content.map((c, key) => 
+                        <div key={key}>
+                            <p>{c}</p>
+                            <img src={this.state.project.images[key]}/>
+                        </div>
+                    )
+                }
+                {
+                    this.props.view == 1 &&
                     this.state.project.content.length > 1 &&
                     <div className='project-view-pagination'>
                         <LEFT onClick={() => this.handleClick(this.state.index-1)}/>
@@ -72,11 +83,14 @@ class ProjectView extends Component {
                     </div>
                 }
             </div>
-            <div className='right-project-view' 
-                style={{
-                    backgroundImage: `url(${this.state.project.images[this.state.index]})`
-                }}
-            />
+            {
+                this.props.view == 1 &&
+                <div className='right-project-view' 
+                    style={{
+                        backgroundImage: `url(${this.state.project.images[this.state.index]})`
+                    }}
+                 />
+            }
           </div>
           :
           <div className='project-view container'/>
@@ -88,7 +102,8 @@ function mapDispatchToProps(dispatch) {
 }
 const mapStateToProps = state => ({
     siteContent: state.site.siteContent,
-    projects: state.site.projects
+    projects: state.site.projects,
+    view: state.site.view
   })
   
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectView);

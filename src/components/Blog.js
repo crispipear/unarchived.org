@@ -8,12 +8,19 @@ class Blog extends Component {
   render() {
     return (
       <div className='blog container'>
-        <div className='left'>
+        {
+          this.props.view == 1 &&
+          <div className='left'>
           {
             this.props.blogs[0] &&
             <FeaturedBlog blog={this.props.blogs[0]} path={`/blog/${this.props.blogs[0].title.replace(/[|&;$%@"<>()+,.']/g, "").replace(/\s+/g, '-').toLowerCase()}`}/>
           }
-        </div>
+          </div>
+        }
+        {
+          this.props.view == 2 &&
+          <h1>Blog</h1>
+        }
         <div className='right'>
           {
             this.props.blogs.map((blog, key) => key !== 0 &&
@@ -27,7 +34,8 @@ class Blog extends Component {
 }
 
 const mapStateToProps = state => ({
-  blogs: state.site.blogs
+  blogs: state.site.blogs,
+  view: state.site.view
 })
 
 export default connect(mapStateToProps, null)(Blog)
