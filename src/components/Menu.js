@@ -63,7 +63,7 @@ class Menu extends Component {
                       replace
                       key={key} 
                       to={r.path}
-                      onClick={() => this.updateLoc(r.path)}
+                      onClick={() => {this.updateLoc(r.path); window.scrollTo(0,0)}}
                       className={this.props.siteLoc === r.path && this.props.siteLoc === '/' ? "active links_home" :
                                  this.props.siteLoc === '/' ? "links_home" :
                                  this.props.siteLoc === r.path ? "active links_reg":

@@ -7,8 +7,17 @@ import { ReactComponent as BACK } from '../../assets/back.svg';
 import {updatePOIIndex, togglePOIInfo} from '../../actions/mapActions';
 import POIInfo from './POIInfo';
 import {Link} from 'react-router-dom';
+import ReactDOM from 'react-dom';
 
 class POIView extends Component {
+    constructor(props){
+        super(props)
+        this.poiRefs = []
+        this.props.poiData.map(p => {
+            this.poiRefs.push(React.createRef())
+        })
+        this.poiListRef = React.createRef()
+    }
     componentDidMount(){
         if(this.props.poiName !== "" && this.props.poiName !== null){
             console.log(this.props.poiName)
@@ -22,6 +31,14 @@ class POIView extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps){
+       if((nextProps.poiIndex !== this.props.poiIndex) && this.props.view == 2){
+           let poiPos = ReactDOM.findDOMNode(this.poiRefs[nextProps.poiIndex].current).offsetTop
+           this.poiListRef.current.scrollTo(0, poiPos-(window.innerHeight/2.05))
+       }
+    }
+
+
     render() {
         let fPoi = this.props.poiData[this.props.poiIndex]
         return (
@@ -33,24 +50,32 @@ class POIView extends Component {
                     <Link className='back-button' to='/explore'>
                         <BACK />
                     </Link>
-                    <div className='poi-featured'>
-                        <div className='featured-content'>
-                            <h1>
-                                {fPoi.poiName}
-                            </h1>
-                            <p>
-                                {fPoi.summary}
-                            </p>
+                    {
+                        this.props.view == 1 &&
+                        <div className='poi-featured'>
+                            <div className='featured-content'>
+                                <h1>
+                                    {fPoi.poiName}
+                                </h1>
+                                <p>
+                                    {fPoi.summary}
+                                </p>
+                            </div>
+                            <div className='featured-image' style={{backgroundImage: `url(${fPoi.posterImage ? fPoi.posterImage : fPoi.images[0]})`}}/>
+                            <Link 
+                                to={`/explore/${this.props.curDistrict}/${fPoi.poiName.replace(/[|&;$%@"<>()+,.']/g, "").replace(/\s+/g, '-').toLowerCase()}`}>
+                                <button>SEE MORE</button>
+                            </Link>
                         </div>
-                        <div className='featured-image' style={{backgroundImage: `url(${fPoi.posterImage ? fPoi.posterImage : fPoi.images[0]})`}}/>
-                        <Link 
-                            to={`/explore/${this.props.curDistrict}/${fPoi.poiName.replace(/[|&;$%@"<>()+,.']/g, "").replace(/\s+/g, '-').toLowerCase()}`}>
-                            <button>SEE MORE</button>
-                        </Link>
-                    </div>
-                    <div className='poi-list'>
+                    }
+                    {<div className='poi-list' ref={this.poiListRef}>
+                        {
+                            this.props.view == 2 &&
+                            <p style={{padding: '0px 24px', fontSize: '14px', marginBottom: '16px'}}>click on the poi to see more details</p>
+                        }
                         {
                             this.props.poiData.map((poi, key) =>
+                                this.props.view == 1 ?
                                 <div className='poi-list-item' 
                                     key={key}
                                      onClick = {() => this.props.updatePOIIndex(key)}
@@ -66,9 +91,29 @@ class POIView extends Component {
                                          }}
                                     />
                                 </div>
+                                :
+                                <Link className='poi-list-item' 
+                                    style={{
+                                        backgroundColor: this.props.poiIndex == key ? '#f2f8ff' : 'transparent'
+                                    }}
+                                    key={key}
+                                    ref={this.poiRefs[key]}
+                                    to={`/explore/${this.props.curDistrict}/${poi.poiName.replace(/[|&;$%@"<>()+,.']/g, "").replace(/\s+/g, '-').toLowerCase()}`}
+                                     onClick = {() => {this.props.updatePOIIndex(key); window.scrollTo(0,0)}}
+                                >
+                                    <div className='poi-list-item-bg'
+                                        style={{
+                                            backgroundImage: `url(${poi.posterImage ? poi.posterImage : poi.images[0]})`
+                                        }}
+                                    />
+                                    <div className='poi-list-item-info'>
+                                        <h1>{poi.poiName}</h1>
+                                        <p>{poi.summary}</p>
+                                    </div>
+                                </Link>
                             )
                         }
-                    </div>
+                    </div>}
                 </div>
                 <GoogleMap />
             </div>
@@ -82,6 +127,7 @@ const mapStateToProps = state => ({
     curDistrict: state.map.curDistrict,
     poiData: state.site.poiData[state.map.curDistrict].poi,
     poiIndex: state.map.index,
-    poiInfo: state.map.info
+    poiInfo: state.map.info,
+    view: state.site.view
 })
 export default connect(mapStateToProps, mapDispatchToProps)(POIView);

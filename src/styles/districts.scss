@@ -57,4 +57,30 @@
             margin-top: 7.5%;
         }
     }
+    @include mobile{
+        min-height: 100vh;
+        .content{
+            padding: 52px 24px 24px 24px;
+            flex-direction: column;
+            width:  100%;
+            box-sizing: border-box;
+            .left, .right{
+                flex: unset;
+            }
+            button{
+                margin-top: 16px;
+            }
+            .right{
+                padding-top: 24px;
+            }
+            h1{
+                font-size: 36px;
+                line-height: 44px
+            }
+            p{
+                font-size: 15px;
+                line-height: 23px;
+            }
+        }
+    }
 }

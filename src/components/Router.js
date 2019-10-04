@@ -75,7 +75,7 @@ class Navigation extends Component {
           }
           {
             this.props.view == 2 && 
-            <MENUICON className={this.props.siteLoc == '/' ? "menu-trigger menu-trigger-home" : "menu-trigger menu-trigger-reg"} 
+            <MENUICON className={(this.props.siteLoc == '/' || window.location.pathname == '/explore') ? "menu-trigger menu-trigger-home" : "menu-trigger menu-trigger-reg"} 
             onClick={this.toggleMenu}/>
           }
           <Menu openedMenu={this.state.openedMenu} toggleMenu={this.toggleMenu}/>
