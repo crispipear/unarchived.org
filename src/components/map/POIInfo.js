@@ -36,11 +36,32 @@ class POIInfo extends Component {
                 </div>
                 <div className='poiInfo-left'>
                     <h1>{poi.poiName}</h1>
+                    {
+                        this.props.view == 2 &&
+                        <div className='poiInfo-video'>
+                        {   
+                            poi.videoUrl ?
+                            <iframe src={poi.videoUrl}
+                            frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
+                            :
+                            <p>360 video is currently unavailable</p>
+                        }
+                        </div>
+                    }
+                    <div className='poiInfo-content'>
+                        <p>{poi.summary}</p>
+                    </div>
+                    {
+                        this.props.view == 2 &&
+                        <Gallery images={poi.images} index={this.state.index} updateIndex={this.updateIndex} toggleModal={this.toggleModal}/>
+                    }
                     <div className='poiInfo-content'>
                         {documentToReactComponents(poi.description)}                     
                     </div>
                 </div>
-                <div className='poiInfo-right'>
+                {
+                    this.props.view == 1 &&
+                    <div className='poiInfo-right'>
                     <div className='poiInfo-video'
                          style={{
                              paddingTop: poi.videoUrl ? '56.25%' : '0%',
@@ -56,7 +77,8 @@ class POIInfo extends Component {
                         }
                     </div>
                     <Gallery images={poi.images} index={this.state.index} updateIndex={this.updateIndex} toggleModal={this.toggleModal}/>
-                </div>
+                    </div>
+                }
             </div>
         );
     }
@@ -67,6 +89,7 @@ function mapDispatchToProps(dispatch) {
 const mapStateToProps = state => ({
     curDistrict: state.map.curDistrict,
     poiData: state.site.poiData[state.map.curDistrict].poi,
-    poiIndex: state.map.index
+    poiIndex: state.map.index,
+    view: state.site.view
 })
 export default connect(mapStateToProps, mapDispatchToProps)(POIInfo);

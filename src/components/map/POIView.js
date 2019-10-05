@@ -34,7 +34,7 @@ class POIView extends Component {
     componentWillReceiveProps(nextProps){
        if((nextProps.poiIndex !== this.props.poiIndex) && this.props.view == 2){
            let poiPos = ReactDOM.findDOMNode(this.poiRefs[nextProps.poiIndex].current).offsetTop
-           this.poiListRef.current.scrollTo(0, poiPos-(window.innerHeight/2.05))
+           this.poiListRef.current.scrollTo({ top: poiPos-(window.innerHeight/2.05), behavior: 'smooth' })
        }
     }
 
