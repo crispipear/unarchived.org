@@ -64,7 +64,7 @@ class POIView extends Component {
                             <div className='featured-image' style={{backgroundImage: `url(${fPoi.posterImage ? fPoi.posterImage : fPoi.images[0]})`}}/>
                             <Link 
                                 to={`/explore/${this.props.curDistrict}/${fPoi.poiName.replace(/[|&;$%@"<>()+,.']/g, "").replace(/\s+/g, '-').toLowerCase()}`}>
-                                <button>SEE MORE</button>
+                                <button>MORE ABOUT THIS SITE</button>
                             </Link>
                         </div>
                     }

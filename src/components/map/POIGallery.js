@@ -18,7 +18,7 @@ export class POIGallery extends Component {
     render() {
         return (
             <div className='poiInfo-images'>
-                <LEFT style={{position: 'absolute', left: 0}}
+                <LEFT style={{position: 'absolute', left: 0, opacity: this.props.images.length > 2 ? 1 : 0}}
                       onClick={() => this.handleClick(this.props.index - 1 )}
                 />
                 <div className='image'>
@@ -30,10 +30,10 @@ export class POIGallery extends Component {
                         )
                     }
                 </div>
-                <RIGHT style={{position: 'absolute', right: 0}}
+                <RIGHT style={{position: 'absolute', right: 0, opacity: this.props.images.length > 2 ? 1 : 0}}
                        onClick={() => this.handleClick(this.props.index + 1)}
                 />
-                <div className='imgCount'>
+                <div className='imgCount' style={{opacity: this.props.images.length > 2 ? 1 : 0}}>
                     {
                         this.props.images.map((i, key) =>
                             <div key={key}

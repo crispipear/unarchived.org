@@ -58,12 +58,18 @@ class TeamMember extends Component {
                       }
                     </div>
                     <div className='member-links'>
-                        <a target="_blank" rel="noopener noreferrer" href={this.props.info.website}>
-                          <WEB_ICON/>
-                        </a>
-                        <a target="_blank" rel="noopener noreferrer" href={this.props.info.linkedin}>
-                          <LINKEDIN_ICON/>
-                        </a>
+                        {
+                          this.props.info.website&&
+                          <a target="_blank" rel="noopener noreferrer" href={this.props.info.website}>
+                            <WEB_ICON/>
+                          </a>
+                        }
+                        {
+                          this.props.info.linkedin&&
+                          <a target="_blank" rel="noopener noreferrer" href={this.props.info.linkedin}>
+                            <LINKEDIN_ICON/>
+                          </a>
+                        }
                     </div>
                 </div>
             </div>

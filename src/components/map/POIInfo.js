@@ -65,7 +65,7 @@ class POIInfo extends Component {
                     <div className='poiInfo-video'
                          style={{
                              paddingTop: poi.videoUrl ? '56.25%' : '0%',
-                             height: poi.videoUrl ? 'unset' : '43%'
+                             height: poi.videoUrl ? 'unset' : '48.25%'
                          }}
                     >
                         {   
