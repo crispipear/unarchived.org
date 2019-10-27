@@ -37,15 +37,10 @@ class POIInfo extends Component {
                 <div className='poiInfo-left'>
                     <h1>{poi.poiName}</h1>
                     {
-                        this.props.view == 2 &&
+                        this.props.view == 2 && poi.videoUrl &&
                         <div className='poiInfo-video'>
-                        {   
-                            poi.videoUrl ?
                             <iframe src={poi.videoUrl}
-                            frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
-                            :
-                            <p>360 video is currently unavailable</p>
-                        }
+                            frameBorder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
                         </div>
                     }
                     <div className='poiInfo-content'>
@@ -62,21 +57,16 @@ class POIInfo extends Component {
                 {
                     this.props.view == 1 &&
                     <div className='poiInfo-right'>
-                    <div className='poiInfo-video'
-                         style={{
-                             paddingTop: poi.videoUrl ? '56.25%' : '0%',
-                             height: poi.videoUrl ? 'unset' : '48.25%'
-                         }}
-                    >
-                        {   
-                            poi.videoUrl ?
+                    {
+                        poi.videoUrl &&
+                        <div className='poiInfo-video'>
                             <iframe src={poi.videoUrl}
-                            frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
-                            :
-                            <p>360 video is currently unavailable</p>
-                        }
-                    </div>
-                    <Gallery images={poi.images} index={this.state.index} updateIndex={this.updateIndex} toggleModal={this.toggleModal}/>
+                            frameBorder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
+                        </div>
+                    }
+                    <Gallery 
+                        fullHeight={!poi.videoUrl}
+                        images={poi.images} index={this.state.index} updateIndex={this.updateIndex} toggleModal={this.toggleModal}/>
                     </div>
                 }
             </div>

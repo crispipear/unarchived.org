@@ -17,7 +17,7 @@ export class POIGallery extends Component {
     
     render() {
         return (
-            <div className='poiInfo-images'>
+            <div className='poiInfo-images' style={{height: this.props.fullHeight?'100%':'48%'}}>
                 <LEFT style={{position: 'absolute', left: 0, opacity: this.props.images.length > 2 ? 1 : 0}}
                       onClick={() => this.handleClick(this.props.index - 1 )}
                 />
