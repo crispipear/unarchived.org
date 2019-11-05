@@ -13,7 +13,7 @@ class Home extends Component {
     if(nextProps.video == true){
       this.refs.vidBg.play()
     }
-  }
+  } 
   render() {
     return (
       this.props.siteContent ?

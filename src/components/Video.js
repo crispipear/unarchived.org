@@ -7,9 +7,11 @@ import {toggleVideo} from '../actions/siteActions';
 class Video extends Component {
     state = {}
     closeVideo = () =>{
-        this.refs.video.pause();
-        this.refs.video.currentTime = 0;
         this.props.toggleVideo(false)
+        if (!this.props.siteContent.home_full_video){
+            this.refs.video.pause();
+            this.refs.video.currentTime = 0;
+        }
     }
     render() {
         return (
@@ -17,10 +19,19 @@ class Video extends Component {
                 <div className='video-close' onClick={this.closeVideo}>
                     <img src={CLOSE}/>
                 </div>
-                <video 
-                ref="video"
-                controls controlsList="nodownload" disablepictureinpicture="true"
-                src={this.props.siteAssets.videoBg}/>
+                {
+                    this.props.siteContent.home_full_video ?
+                    <div className='video-container'>
+                        <iframe src={this.props.siteContent.home_full_video} frameBorder="0" 
+                        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
+                    </div>
+                    :
+                    <video 
+                        ref="video"
+                        controls controlsList="nodownload" disablepictureinpicture="true"
+                        src={this.props.siteAssets.videoBg}
+                    />
+                }
             </div>
         );
     }
@@ -31,6 +42,7 @@ function mapDispatchToProps(dispatch) {
     }, dispatch)
 }
 const mapStateToProps = state => ({
-  siteAssets: state.site.siteAssets
+  siteAssets: state.site.siteAssets,
+  siteContent: state.site.siteContent
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Video);
