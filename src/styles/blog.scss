@@ -33,9 +33,12 @@
                         display: flex;
                         flex-direction: column;
                         span{
-                            font-size: 14px;
+                            font-size: 16px;
                             color: $key1;
                             font-weight: 400;
+                            @include laptop{
+                                font-size:14px;
+                            }
                         }
                     }
                 }
@@ -43,14 +46,18 @@
                     flex: 5;
                     h1{
                         color: $key1;
-                        font-size: 1.4rem;
+                        font-size: 1.75rem;
                     }
                     p{
-                        font-size: 14px;
+                        font-size: 1.15rem;
                     }
                     @include laptop{
+                        h1{
+                            font-size: 20px;
+                            line-height: 132%;
+                        }
                         p{
-                            font-size: 13.5px;    
+                            font-size: 14px;   
                         }
                     }
                 }
@@ -71,8 +78,12 @@
         width: 62.5%;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-column-gap: 20px;
-        grid-row-gap: 20px;
+        grid-column-gap: 4%;
+        grid-row-gap: 4%;
+        @include laptop{
+            grid-column-gap: 20px;
+            grid-row-gap: 20px;
+        }
         .blog-item{
             cursor: pointer;
             transition: opacity 0.25s;
@@ -91,8 +102,9 @@
                 padding: 1% 5%;
                 h1{
                     color: white;
-                    font-size: 1rem;
-                    line-height: 1.5rem;
+                    font-size: 1.2rem;
+                    line-height: 1.7rem;
+                    letter-spacing: 0.05rem;
                 }
                 .blog-image{
                     z-index: -1;
@@ -114,6 +126,12 @@
                         background: rgba($key1, 0.75);
                     }
                 }
+                @include laptop{
+                    h1{
+                        font-size: 1rem;
+                        line-height: 1.5rem;
+                    }
+                }
             }
             .bottom{
                 flex: 1;
@@ -124,7 +142,7 @@
                 flex-direction: column;
                 justify-content: space-between;
                 p{
-                    font-size: 14px;
+                    font-size: 16px;
                     margin: 0%;
                     color: $text;
                 }
@@ -134,28 +152,22 @@
                     justify-content: space-between;
                     align-items: center;
                     span{
-                        font-size: 12px;
-                        line-height: 12px;
+                        font-size: 14px;
+                        line-height: 14px;
                         flex: 1;
                         color: $key1;
                         text-align: right;
                     }
-                    .blog-author-container{
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        flex: 1.5;
-                        span{
-                        text-align: left;
-                        }
+                }
+                @include laptop{
+                    p{
+                        font-size: 14px;
                     }
-                    .blog-author-image{
-                        width: 20%;
-                        padding-bottom: 20%;
-                        border-radius: 50%;
-                        background-position: center 10%;
-                        background-size: 175%;
-                        margin-right: 5%;
+                    .blog-info{
+                        span{
+                            font-size: 12px;
+                            line-height: 12px;
+                        }
                     }
                 }
             }

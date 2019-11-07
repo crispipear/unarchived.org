@@ -180,8 +180,11 @@
                 margin-right: 5%;
                 h1{
                     color: $key1;
-                    font-size: 22px;
+                    font-size: 28px;
                     margin-top: 0%;
+                }
+                p{
+                    font-size: 20px;
                 }
             }
             .featured-image{
@@ -195,6 +198,16 @@
                 position: absolute;
                 left: 0%;
                 bottom: 0%;
+            }
+            @include laptop{
+                .featured-content{
+                    h1{
+                        font-size: 20px;
+                    }
+                    p{
+                        font-size: 14px;
+                    }
+                }
             }
         }
         .poi-list{
