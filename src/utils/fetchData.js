@@ -1,9 +1,7 @@
 import * as contentful from 'contentful';
+import contentfulConfig from './contentfulKey';
 
-var client = contentful.createClient({
-  space: 'swfnnffmifl3',
-  accessToken: '6949165c19ded349879c8e6909191372b2a83a053bb552df0306cf16c8965805'
-})
+var client = contentful.createClient(contentfulConfig)
 
 export const fetchData = type => {
   return client.getEntries({content_type: type})
